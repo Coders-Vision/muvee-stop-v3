@@ -10,7 +10,7 @@ import getCurrentHost from "@/lib/get-current-host";
 import { data } from "@/lib/seo-data";
 import CookieBanner from "@/components/ui/cookie-banner";
 // import GoogleTagManager from "@/analytics/google/google-tag-manager";
-import { GoogleTagManager } from '@next/third-parties/google'
+import { GoogleTagManager } from "@next/third-parties/google";
 
 export const revalidate = 3600; // revalidate at most every hour
 
@@ -22,7 +22,7 @@ const inter = Inter({ subsets: ["latin"] });
 // };
 
 export const metadata: Metadata = {
-  // metadataBase: base_url,
+  metadataBase: new URL(process.env.DEPOLY_URL || "/"),
   title: {
     default: data.title,
     template: `%s | ${data.title}`,
@@ -37,9 +37,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-  
-      </head>
+      <head></head>
       <body className={inter.className}>
         {/* <NextTopLoader
           color="#6ebf8a"
