@@ -15,9 +15,9 @@ function GoogleTagManager({ GTM_ID }: { GTM_ID: string }) {
     }
   }, [pathname, searchParams]);
 
-//   if (process.env.NEXT_PUBLIC_DEPOLY_ENV !== "production") {
-//     return null;
-//   }
+  if (process.env.NEXT_PUBLIC_DEPOLY_ENV !== "production") {
+    return null;
+  }
 
   return (
     <>

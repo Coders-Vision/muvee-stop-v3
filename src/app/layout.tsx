@@ -6,11 +6,12 @@ import Header from "@/layout/root-layout/header/header";
 import Footer from "@/layout/root-layout/footer/footer";
 import { Providers } from "@/providers/providers";
 // import NextTopLoader from "nextjs-toploader";
-import getCurrentHost from "@/lib/get-current-host";
 import { data } from "@/lib/seo-data";
-import CookieBanner from "@/components/ui/cookie-banner";
+// import CookieBanner from "@/components/ui/cookie-banner";
 // import GoogleTagManager from "@/analytics/google/google-tag-manager";
+// import GoogleAnalytics from "@/analytics/google/google-analytics";
 import { GoogleTagManager } from "@next/third-parties/google";
+
 
 export const revalidate = 3600; // revalidate at most every hour
 
@@ -37,7 +38,14 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head></head>
+      <head>
+        {/* //Custom Implementation of Google Tags */}
+        {/* <GoogleTagManager
+          GTM_ID={process.env.NEXT_PUBLIC_MUVEE_STOP_GTM || ""}
+        /> */}
+        {/* OR */}
+        {/* <GoogleAnalytics GA_MEASUREMENT_ID="G-0000000000" /> */}
+      </head>
       <body className={inter.className}>
         {/* <NextTopLoader
           color="#6ebf8a"
@@ -60,7 +68,8 @@ export default function RootLayout({
           <Footer />
           {/* <CookieBanner /> */}
         </Providers>
-        <GoogleTagManager gtmId="GTM-XYZ" />
+        {/* Next JS In-built implementation */}
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_MUVEE_STOP_GTM || ""}/>
       </body>
     </html>
   );

@@ -1,4 +1,5 @@
 "use client";
+// To be used with Google Analytics Components
 import { useState, useEffect } from "react";
 import { getLocalStorage, setLocalStorage } from "@/lib/storage-helper";
 
@@ -12,13 +13,10 @@ function CookieBanner() {
 
   useEffect(() => {
     const newValue = cookieConsent ? "granted" : "denied";
-
-    // window.gtag("consent", "update", {
-    //   analytics_storage: newValue,
-    // });
-
+    window.gtag("consent", "update", {
+      analytics_storage: newValue,
+    });
     setLocalStorage("cookie_consent", cookieConsent);
-
     //For Testing
     console.log("Cookie Consent: ", cookieConsent);
   }, [cookieConsent]);
