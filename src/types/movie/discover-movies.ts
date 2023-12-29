@@ -1,4 +1,4 @@
-import { Result } from "../movie/movie-result";
+import { Result } from "./movie-result";
 
 export interface DiscoverMovies {
   page: number;

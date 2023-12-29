@@ -2,7 +2,7 @@ import { discoverMovies } from "@/actions/movies/discover-movies";
 import Container from "@/layout/container";
 import { MovieFilterParams } from "@/types/filter/filter-params";
 import { Metadata } from "next";
-import PopularMovies from "./components/popular-movies";
+import MoviesPaginated from "@/components/movie-paginated";
 
 type PopularMovie = {
   searchParams: MovieFilterParams;
@@ -22,7 +22,7 @@ async function Popular({ searchParams }: PopularMovie) {
   return (
     <Container>
       <h1 className="font-semibold text-xl mt-4 mx-4">Popular Movies</h1>
-      <PopularMovies popularMovies={popularMovies} />
+      <MoviesPaginated movies={popularMovies}/>
     </Container>
   );
 }

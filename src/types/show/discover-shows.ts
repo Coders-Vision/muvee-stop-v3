@@ -1,4 +1,4 @@
-import { Result } from "../show/show-result";
+import { Result } from "./show-result";
 
 export interface DiscoverShows{
   page: number;
