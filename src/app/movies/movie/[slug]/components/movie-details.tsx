@@ -2,19 +2,34 @@
 
 import React, { useState } from "react";
 import { Movie } from "@/types/movie/movie";
-import { StarIcon } from "lucide-react";
+import { Share2, StarIcon } from "lucide-react";
 import ImageWithFallback from "@/components/image-with-fallback";
 import { Button } from "@/components/ui/button";
 import { getPosterImage } from "@/lib/get-image-path";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { createUrlSLug } from "@/lib/slugify";
 
 function MovieDetails({ movie }: { movie: Movie }) {
   const [showMore, setShowMore] = useState(false);
 
-  return (
-    // <div className="relative">
+  const openShareDrawer = () => {
+    const dataShare = {
+      title: movie.title,
+      text: movie.overview,
+      url: `${process.env.NEXT_PUBLIC_DEPOLY_URL}/movies/movie/${createUrlSLug(
+        `${movie.id}`,
+        movie.title
+      )}`,
+    };
+    if (navigator.share && navigator.canShare(dataShare)) {
+      navigator.share(dataShare);
+    } else {
+      alert("Sharing not supported in this browser");
+    }
+  };
 
+  return (
     <div className="relative sm:flex gap-6 mt-20 mx-4 select-none sm:max-w-md sm:mx-auto  lg:max-w-none">
       <div className="relative bg-gradient-to-r from-gray-800 to-gray-600 lg:bg-none md:flex-shrink-0 ">
         <ImageWithFallback
@@ -29,9 +44,24 @@ function MovieDetails({ movie }: { movie: Movie }) {
       </div>
       <div className="absolute lg:static top-12 mx-2 max-w-[900px] text-opacity-30 text-[.75rem] md:text-[.85rem] lg:text-[1rem]">
         <ScrollArea className="h-[calc(100vh-350px)] md:h-auto">
-          <h1 className="text-xl md:text-3xl font-bold my-2">
-            {movie.title}
-          </h1>
+
+          <div className="flex items-center space-x-6 justify-between">
+            <h1 className="text-xl md:text-3xl font-bold my-2">
+              {movie.title}
+            </h1>
+            <span>
+              {!!navigator.canShare && (
+                <Button
+                  onClick={openShareDrawer}
+                  className="flex item-center gap-x-2 bg-transparent border-2 border-white rounded-full text-white"
+                >
+                  <Share2 />
+                  Share
+                </Button>
+              )}
+            </span>
+          </div>
+
           <div className="flex gap-2">
             <div className="flex ">
               <div className="flex items-center gap-1">
