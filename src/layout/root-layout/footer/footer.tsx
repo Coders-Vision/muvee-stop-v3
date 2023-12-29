@@ -22,28 +22,26 @@ function Footer() {
             <Link href="/" className=" hover:underline  ">
               Home
             </Link>
-            <Link href="/movies" className=" hover:underline ">
+            <Link href="/movies/popular" className=" hover:underline ">
               Movies
             </Link>
-            <Link href="/shows" className=" hover:underline  ">
+            <Link href="/shows/popular" className=" hover:underline  ">
               Shows
             </Link>
-            <Link href="/sitemap" className=" hover:underline  ">
+            {/* <Link href="/sitemap" className=" hover:underline  ">
               Sitemap
-            </Link>
+            </Link> */}
           </div>
           <div>
             <div className="flex flex-col justify-center items-center lg:justify-end lg:items-end">
               <Link href="/">
                 <Image
-                  width="0"
-                  height="0"
-                  sizes="md"
-                  loading="eager"
-                  priority={true}
                   src="/images/logo/muvee-stop.svg"
                   alt="muvee-stop"
-                  className="w-fit h-[50px] md:h-16 "
+                  className="w-fit h-[50px] md:h-16"
+                  width="100"
+                  height="50"
+                  sizes="100vw"
                 />
               </Link>
               <span className="block text-sm text-gray-500 text-center dark:text-gray-400">
