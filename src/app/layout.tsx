@@ -12,7 +12,6 @@ import { data } from "@/lib/seo-data";
 // import GoogleAnalytics from "@/analytics/google/google-analytics";
 import { GoogleTagManager } from "@next/third-parties/google";
 
-
 export const revalidate = 3600; // revalidate at most every hour
 
 const inter = Inter({ subsets: ["latin"] });
@@ -29,6 +28,9 @@ export const metadata: Metadata = {
     template: `%s | ${data.title}`,
   },
   description: data.description,
+  openGraph: {
+    images: `${process.env.DEPOLY_URL}/images/og-image.png`,
+  },
 };
 
 export default function RootLayout({
@@ -69,7 +71,9 @@ export default function RootLayout({
           {/* <CookieBanner /> */}
         </Providers>
         {/* Next JS In-built implementation */}
-        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_MUVEE_STOP_GTM || ""}/>
+        <GoogleTagManager
+          gtmId={process.env.NEXT_PUBLIC_MUVEE_STOP_GTM || ""}
+        />
       </body>
     </html>
   );
