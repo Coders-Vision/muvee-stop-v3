@@ -1,15 +1,16 @@
 "use server";
 
 import { axiosInstance } from "@/lib/axios-server";
-import { MovieFilterParams } from "@/types/filter/filter-params";
-import { DiscoverMovies } from "@/types/movie/discover-movies";
+import { ShowFilterParams } from "@/types/filter/filter-params";
+import { DiscoverShows } from "@/types/show/discover-shows";
+
 
 //Excluding type
-type DiscoverQuery = Omit<MovieFilterParams, "type">;
+type DiscoverQuery = Omit<ShowFilterParams, "type">;
 
-export async function discover(query: DiscoverQuery) {
+export async function discoverShows(query: DiscoverQuery) {
   const response = await axiosInstance.get(`/discover/tv`, {
-    params: { query },
+    params: { ...query },
   });
-  return response.data as DiscoverMovies;
+  return response.data as DiscoverShows;
 }
