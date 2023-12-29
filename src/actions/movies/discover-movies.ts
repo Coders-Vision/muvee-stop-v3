@@ -7,9 +7,9 @@ import { DiscoverMovies } from "@/types/filter/discover-movies";
 //Excluding type
 type DiscoverQuery = Omit<MovieFilterParams, "type">;
 
-export async function discover(query: DiscoverQuery) {
+export async function discoverMovies(query: DiscoverQuery) {
   const response = await axiosInstance.get(`/discover/movie`, {
-    params: { query },
+    params: { ...query },
   });
   return response.data as DiscoverMovies;
 }
