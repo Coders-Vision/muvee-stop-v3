@@ -21,13 +21,13 @@ function MobileNav() {
               <AccordionTrigger> Movies</AccordionTrigger>
               <AccordionContent className="border-opacity-5">
                 <div className="flex flex-row  items-start gap-6 my-2">
-                  <ul className="grid">
+                  <ul className="">
                     {moviesMenu?.map((menu, index) => (
                       <Link
                         key={index}
                         href={`${menu.href}`}
                         className={cn(
-                          "hover:rounded-xl block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent  hover:text-accent-foreground  focus:bg-accent focus:text-accent-foreground"
+                          "w-[90vw] hover:rounded-xl block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent  hover:text-accent-foreground  focus:bg-accent focus:text-accent-foreground"
                         )}
                       >
                         <div className="text-sm font-medium leading-none">

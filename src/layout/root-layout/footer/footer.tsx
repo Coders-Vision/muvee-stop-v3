@@ -54,11 +54,11 @@ function Footer() {
             </div>
           </div>
         </div>
-        <div className="text-center mt-8 text-xs">
+        {/* <div className="text-center mt-8 text-xs">
           <span className="font-extrabold"> IMPORTANT:</span> This site does not
           store any files on its server. All contents are provided by
           non-affiliated third parties.
-        </div>
+        </div> */}
       </Container>
     </footer>
   );
