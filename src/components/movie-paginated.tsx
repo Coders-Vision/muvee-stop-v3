@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from "react";
 import MovieCard from "@/components/movie-card";
@@ -13,7 +13,13 @@ type MoviesPaginated = {
   total_results: number;
 };
 
-function MoviesPaginated({ movies }: { movies: MoviesPaginated }) {
+function MoviesPaginated({
+  movies,
+  paginatePath,
+}: {
+  movies: MoviesPaginated;
+  paginatePath: string;
+}) {
   const { width } = useDeviceInfo();
 
   return (
@@ -30,7 +36,7 @@ function MoviesPaginated({ movies }: { movies: MoviesPaginated }) {
       {movies?.results.length! > 0 && (
         <div className="mx-auto mt-4">
           <PaginationButtons
-            pathname={"/movies/popular"}
+            pathname={paginatePath}
             currentPage={Number(movies.page)}
             totalPages={Number(movies?.total_pages)}
             pagesToShow={(width || 480) > 300 ? 5 : 2}

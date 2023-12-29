@@ -22,7 +22,10 @@ async function Popular({ searchParams }: PopularMovie) {
   return (
     <Container>
       <h1 className="font-semibold text-xl mt-4 mx-4">Popular Movies</h1>
-      <MoviesPaginated movies={popularMovies}/>
+      <MoviesPaginated
+        movies={popularMovies}
+        paginatePath={"/movies/popular"}
+      />
     </Container>
   );
 }

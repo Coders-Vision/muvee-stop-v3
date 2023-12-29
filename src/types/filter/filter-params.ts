@@ -4,9 +4,11 @@ export interface MovieFilterParams {
   include_video?: boolean;
   language?: "en-US";
   primary_release_year?: number;
-  primary_release_date?: DateType;
+  // primary_release_date?: DateType;
   region?: string;
-  release_date?: DateType;
+  // release_date?: DateType;
+  "release_date.gte"?: string
+  "release_date.lte"?: string
   sort_by?: string;
   vote_average?: ValueType;
   vote_count?: ValueType;
@@ -32,10 +34,10 @@ export interface MovieFilterParams {
 
 export interface ShowFilterParams {}
 
-export type DateType = {
-  gte: Date;
-  lte: Date;
-};
+// export type DateType = {
+//   gte: Date;
+//   lte: Date;
+// };
 
 export type ValueType = {
   gte: number;
