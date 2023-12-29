@@ -1,9 +1,37 @@
-import React from 'react'
+import MoviesPaginated from "@/components/movie-paginated";
+import Container from "@/layout/container";
+import { Metadata } from "next";
+import { MovieFilterParams } from "@/types/filter/filter-params";
+import { discoverMovies } from "@/actions/movies/discover-movies";
 
-function TopRated() {
+
+type TopRatedMovie = {
+  searchParams: MovieFilterParams;
+};
+
+//Next js SEO Tag Generation
+export const metadata: Metadata = {
+  title: "Top Rated Movies",
+};
+
+async function UpcomingMovies({ searchParams }: TopRatedMovie) {
+
+  const topRatedMovies = await discoverMovies({
+    page: searchParams.page,
+    sort_by: "vote_average.desc",
+    without_genres: "99,10755",
+    "vote_count.gte": "200",
+  });
+
   return (
-    <div>TopRated</div>
-  )
+    <Container>
+      <h1 className="font-semibold text-xl mt-4 mx-4">Top Rated Movies</h1>
+      <MoviesPaginated
+        movies={topRatedMovies}
+        paginatePath={"/movies/top-rated"}
+      />
+    </Container>
+  );
 }
 
-export default TopRated
+export default UpcomingMovies;

@@ -14,7 +14,6 @@ export const metadata: Metadata = {
   title: "Upcoming Movies",
 };
 
-// https://api.themoviedb.org/3/discover/movie?page=1&release_date.gte={min_date}&release_date.lte={max_date}
 async function UpcomingMovies({ searchParams }: UpcomingMovie) {
   const twoMonthsAdd = addDate(60);
   const fouraMonthsAdd = addDate(240);
@@ -29,7 +28,6 @@ async function UpcomingMovies({ searchParams }: UpcomingMovie) {
 
   return (
     <Container>
-      {twoMonthsAdd} ==- {fouraMonthsAdd}
       <h1 className="font-semibold text-xl mt-4 mx-4">Upcoming Movies</h1>
       <MoviesPaginated
         movies={nowPlayingMovies}
