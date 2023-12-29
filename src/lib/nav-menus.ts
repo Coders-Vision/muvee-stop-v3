@@ -7,22 +7,22 @@ export const moviesMenu: {
     title: "Popular",
     href: "/movies/popular",
     description:
-      "Check out all the Popular shows what people are watching around the world!",
+      "Check out all the Popular Movies",
   },
   {
     title: "Now Playing",
     href: "/movies/now-playing",
-    description: "See what shows are airing today",
+    description: "See whats playing around the Theaters!",
   },
   {
     title: "Upcoming",
     href: "/movies/upcoming",
-    description: "See whats on TV",
+    description: "Coming Soon Movies",
   },
   {
     title: "Top Rated",
     href: "/movies/top-rated",
-    description: "Have a look into all the Top-Rated Shows",
+    description: "Have a look into all the Top-Rated Movies",
   },
 ];
 
