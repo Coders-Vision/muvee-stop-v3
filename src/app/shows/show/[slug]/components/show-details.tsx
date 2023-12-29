@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { Show } from "@/types/show/show";
 import ImageWithFallback from "@/components/image-with-fallback";
-import { getBannerImage, getPosterImage } from "@/lib/get-image-path";
+import {  getPosterImage } from "@/lib/get-image-path";
 import { Share2, StarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -30,7 +30,7 @@ function ShowDetails({ show }: { show: Show }) {
     const dataShare = {
       title: name,
       text: overview,
-      url: `/shows/show/${overview}/`,
+      url: `${process.env.NEXT_PUBLIC_DEPOLY_URL}/shows/show/${overview}/`,
     };
     if (navigator.share && navigator.canShare(dataShare)) {
       navigator.share(dataShare);
