@@ -3,16 +3,18 @@
 import React, { useState } from "react";
 import { Show } from "@/types/show/show";
 import ImageWithFallback from "@/components/image-with-fallback";
-import {  getPosterImage } from "@/lib/get-image-path";
+import { getPosterImage } from "@/lib/get-image-path";
 import { Share2, StarIcon } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
+import { createUrlSLug } from "@/lib/slugify";
 
 function ShowDetails({ show }: { show: Show }) {
   const [showMore, setShowMore] = useState(false);
 
   const {
+    id,
     poster_path,
     original_name,
     status,
@@ -30,7 +32,10 @@ function ShowDetails({ show }: { show: Show }) {
     const dataShare = {
       title: name,
       text: overview,
-      url: `${process.env.NEXT_PUBLIC_DEPOLY_URL}/shows/show/${overview}/`,
+      url: `${process.env.NEXT_PUBLIC_DEPOLY_URL}/shows/show/${createUrlSLug(
+        `${id}`,
+        name
+      )}`,
     };
     if (navigator.share && navigator.canShare(dataShare)) {
       navigator.share(dataShare);
