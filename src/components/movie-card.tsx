@@ -72,7 +72,7 @@ function MovieCard({
             <div className="flex ">
               <div className="flex items-center gap-1">
                 <StarIcon fill="white" size={18} />
-                {movie.vote_average.toFixed(1)}
+                {movie.vote_average?.toFixed(1)}
               </div>
             </div>
             <div>{new Date(movie.release_date).getFullYear()}</div>

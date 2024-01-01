@@ -10,7 +10,7 @@ type ShowPage = {
   };
 };
 
-import { getBannerImage } from "@/lib/get-image-path";
+import { getBannerImageSmall } from "@/lib/get-image-path";
 import { ImageResponse } from "next/og";
 import { getShowDetails } from "@/actions/shows/get-show-details";
 import getCurrentHost from "@/lib/get-current-host";
@@ -32,10 +32,10 @@ export default async function Image({ params }: ShowPage) {
   try {
     const show = await getShowDetails(showId);
 
-    const imagePath = await fetch(getBannerImage(show.backdrop_path)).then(
+    const imagePath = await fetch(getBannerImageSmall(show.backdrop_path)).then(
       (res) => res.arrayBuffer()
     );
-    
+
     return new ImageResponse(
       (
         // ImageResponse JSX element

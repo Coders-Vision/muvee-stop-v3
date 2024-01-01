@@ -79,7 +79,7 @@ function ShowDetails({ show }: { show: Show }) {
             <div className="flex ">
               <div className="flex items-center gap-1">
                 <StarIcon fill="white" size={18} />
-                {vote_average.toFixed(1)}
+                {vote_average?.toFixed(1)}
               </div>
             </div>
             <div>{new Date(first_air_date).getFullYear()}</div>

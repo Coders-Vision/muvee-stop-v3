@@ -69,7 +69,7 @@ function ShowCard({
             <div className="flex ">
               <div className="flex items-center gap-1">
                 <StarIcon fill="white" size={18} />
-                {show.vote_average.toFixed(1)}
+                {show.vote_average?.toFixed(1)}
               </div>
             </div>
             <div>{new Date(show.first_air_date).getFullYear()}</div>

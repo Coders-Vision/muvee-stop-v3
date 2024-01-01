@@ -42,7 +42,7 @@ function Slide({ result }: { result: MovieResult }) {
             <div className="flex ">
               <div className="flex items-center gap-1">
                 <StarIcon fill="white" size={14} />
-                {result.vote_average.toFixed(1)}
+                {result.vote_average?.toFixed(1)}
               </div>
             </div>
             <div>{new Date(result.release_date).getFullYear()}</div>

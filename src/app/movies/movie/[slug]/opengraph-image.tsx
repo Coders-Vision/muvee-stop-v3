@@ -9,7 +9,7 @@ type MoviePage = {
 };
 
 import getCurrentHost from "@/lib/get-current-host";
-import { getBannerImage } from "@/lib/get-image-path";
+import { getBannerImageSmall } from "@/lib/get-image-path";
 import { ImageResponse } from "next/og";
 
 import { getMovieDetails } from "@/actions/movies/get-movie-details";
@@ -32,9 +32,9 @@ export default async function Image({ params }: MoviePage) {
   try {
     const movie = await getMovieDetails(movieId);
 
-    const imagePath = await fetch(getBannerImage(movie.backdrop_path)).then(
-      (res) => res.arrayBuffer()
-    );
+    const imagePath = await fetch(
+      getBannerImageSmall(movie.backdrop_path)
+    ).then((res) => res.arrayBuffer());
 
     return new ImageResponse(
       (
