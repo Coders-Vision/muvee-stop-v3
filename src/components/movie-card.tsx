@@ -36,7 +36,7 @@ function MovieCard({
         }}
       >
         <div className="flex flex-col justify-center items-center my-2">
-          <Card className="max-w-[125px] md:max-w-[175px] rounded-xl shadow-xl cursor-pointer border-[3px] border-[#f9f9f9] border-opacity-10 hover:border-opacity-80 hover:shadow-2xl transform hover:scale-105 transition duration-300">
+          <Card className="w-[125px] md:w-[150px] lg:w-[175px] rounded-xl shadow-xl cursor-pointer border-[3px] border-[#f9f9f9] border-opacity-10 hover:border-opacity-80 hover:shadow-2xl transform hover:scale-105 transition duration-300">
             <CardContent className="p-0">
               <Link
                 href={`/movies/movie/${createUrlSLug(
@@ -48,7 +48,7 @@ function MovieCard({
                   src={getPosterImage(movie.poster_path)}
                   alt={`${movie.title}`}
                   placeholder="empty"
-                  loading="lazy"
+                  loading="eager"
                   width="0"
                   height="0"
                   sizes="100vw"
