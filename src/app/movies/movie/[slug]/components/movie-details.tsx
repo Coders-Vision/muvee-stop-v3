@@ -36,6 +36,7 @@ function MovieDetails({ movie }: { movie: Movie }) {
           src={getPosterImage(movie.poster_path)}
           alt={`${movie.title}`}
           placeholder="empty"
+          loading="eager"
           width="0"
           height="0"
           sizes="100vw"

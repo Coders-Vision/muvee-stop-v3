@@ -22,6 +22,7 @@ function ShowBanner({ show }: { show: Show }) {
             src={getBannerImage(show.backdrop_path)}
             alt={`${show.original_name}`}
             placeholder="empty"
+            loading="eager"
             width="0"
             height="0"
             sizes="100vw"

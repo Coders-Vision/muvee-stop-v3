@@ -25,6 +25,7 @@ function MovieBanner({ movie }: { movie: Movie }) {
             src={getBannerImage(movie.backdrop_path)}
             alt={`${movie.title}`}
             placeholder="empty"
+            loading="eager"
             width="0"
             height="0"
             sizes="100vw"

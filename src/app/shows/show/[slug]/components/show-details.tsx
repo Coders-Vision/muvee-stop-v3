@@ -49,6 +49,7 @@ function ShowDetails({ show }: { show: Show }) {
       <div className="relative bg-gradient-to-r from-gray-800 to-gray-600 lg:bg-none md:flex-shrink-0 ">
         <ImageWithFallback
           src={getPosterImage(poster_path)}
+          loading="eager"
           //   src={getBannerImage(backdrop_path)}
           alt={`${name}`}
           placeholder="empty"
