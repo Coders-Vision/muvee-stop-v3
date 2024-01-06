@@ -95,11 +95,13 @@ function ShowSeasons({ show }: { show: Show }) {
             key={`seasons`}
             breakpoints={{
               280: { slidesPerView: 2, spaceBetween: 4 },
-              360: { slidesPerView: 3, spaceBetween: 5 },
-              480: { slidesPerView: 4, spaceBetween: 5 },
+              360: { slidesPerView: 2.8, spaceBetween: 2 },
+              480: { slidesPerView: 3.5, spaceBetween: 5 },
               768: { slidesPerView: 4, spaceBetween: 5 },
               820: { slidesPerView: 4, spaceBetween: 10 },
-              900: { slidesPerView: 6, spaceBetween: 5 },
+              900: { slidesPerView: 5, spaceBetween: 5 },
+              1024: { slidesPerView: 5, spaceBetween: 5 },
+              1200: { slidesPerView: 6, spaceBetween: 5 },
             }}
           >
             {seasons.map((result) => (
