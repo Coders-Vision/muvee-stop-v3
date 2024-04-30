@@ -57,7 +57,6 @@ export async function generateMetadata({
 async function Movie({ params }: MoviePage) {
   const movieId = params.slug.split("-")[0];
   const movie = await getMovieDetails(movieId);
-
   // if (!movie) {
   //   notFound();
   // }
