@@ -21,7 +21,7 @@ import { createUrlSLug } from "@/lib/slugify";
 function Trending({ movie }: { movie: MovieResult }) {
   const { title, backdrop_path } = movie;
   return (
-    <Card className="relative max-w-[275px] md:max-w-[350px]   mx-1 rounded-2xl shadow-xl cursor-pointer  hover:shadow-2xl transform hover:scale-105 transition duration-300 ">
+    <Card  className="relative  border-0  mx-1  shadow-xl cursor-pointer  hover:shadow-2xl transform hover:scale-105 transition duration-300 ">
       <CardContent className="p-0">
         <div className="relative">
           <div className="absolute rounded-2xl inset-0 bg-zinc-800 opacity-50 h-full w-full z-50 hover:shadow-[0px_2px_45px_20px_rgba(73,128,205,1)_inset] transition duration-300"></div>

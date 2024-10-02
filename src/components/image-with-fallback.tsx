@@ -1,3 +1,4 @@
+"use client"
 import React, { useEffect, useMemo, useState } from "react";
 import Image, { ImageProps } from "next/image";
 // import fallbackImage from "../../public/images/default-poster.svg";
