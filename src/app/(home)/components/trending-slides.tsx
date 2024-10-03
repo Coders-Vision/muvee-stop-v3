@@ -31,8 +31,8 @@ function Trending({ movie }: { movie: MovieResult }) {
             alt={`${title}`}
             placeholder="empty"
             loading="lazy"
-            width="0"
-            height="0"
+            width={350} // Set a fixed width
+            height={200} // Set a fixed height based on the image's aspect ratio
             sizes="100vw"
             className="object-contain w-full h-auto rounded-xl"
           />
