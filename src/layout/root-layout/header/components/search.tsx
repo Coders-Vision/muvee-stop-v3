@@ -1,5 +1,5 @@
 "use client";
-import React, { Dispatch, SetStateAction, useEffect, useState } from "react";
+import React, { KeyboardEvent, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { SearchType, SearchResult } from "@/types/search/search";
@@ -132,6 +132,7 @@ function Suggestions({
 
 function Search() {
   const [search, setSearch] = useState<string>("");
+  const router = useRouter();
   // const [searchResult, setSearchResult] = useState<SearchResult[]>([]);
 
   const { data, error, isLoading } = useGet<SearchType>({
@@ -151,12 +152,20 @@ function Search() {
     }
   };
 
+  const goToSearchPage = (evemt: KeyboardEvent<HTMLInputElement>) => {
+    if (evemt.key === "Enter") {
+      router.push(`/search?searchQuery=${search}&page=1`);
+      closeSearchSuggestion();
+    }
+  };
+
   return (
     <div className="relative mx-2 max-w-[900px] ">
       <Input
         className="rounded-2xl py-4"
         onChange={(e) => setSearch(e.target.value)}
         placeholder="Search for Movies and TV-Shows"
+        onKeyUp={goToSearchPage}
       />
       <div className="transition-all duration-[0.5s] ease-[ease-in-out]">
         {search && searchList.length > 0 ? (
