@@ -49,8 +49,8 @@ function Season({ season }: { season: SeasonType }) {
                   alt={`${name}`}
                   placeholder="empty"
                   loading="eager"
-                  width="0"
-                  height="0"
+                  width={175} // Set a fixed width
+                  height={260} // Set a fixed height based on the image aspect ratio
                   sizes="100vw"
                   className="object-contain w-full h-auto rounded-xl"
                 />
