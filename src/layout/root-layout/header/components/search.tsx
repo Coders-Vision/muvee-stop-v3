@@ -152,8 +152,9 @@ function Search() {
     }
   };
 
-  const goToSearchPage = (evemt: KeyboardEvent<HTMLInputElement>) => {
-    if (evemt.key === "Enter") {
+  const goToSearchPage = (event: KeyboardEvent<HTMLInputElement>) => {
+    const searchQuery = (event.target as HTMLInputElement).value;
+    if (event.key === "Enter" && searchQuery) {
       router.push(`/search?searchQuery=${search}&page=1`);
       closeSearchSuggestion();
     }

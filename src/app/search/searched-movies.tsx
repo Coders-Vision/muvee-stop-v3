@@ -6,12 +6,12 @@ import MovieCard from "@/components/movie-card";
 import { SearchType } from "@/types/search/search";
 import ShowCard from "@/components/show-card";
 import { Result as MovieResult } from "@/types/movie/movie-result";
-import { Card } from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+// import { Card } from "@/components/ui/card";
+// import { Label } from "@/components/ui/label";
+// import { Input } from "@/components/ui/input";
 import { getSearch } from "@/actions/search";
 import PaginationButtons from "@/components/ui/pagination-buttons";
-import { usePathname, useRouter, useSearchParams } from "next/navigation";
+// import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import useDeviceInfo from "@/hooks/use-device-info";
 import _ from "lodash";
 
@@ -22,38 +22,38 @@ function SearcheddMovies({
   page: number;
   searchQuery: string;
 }) {
-  const router = useRouter();
-  const pathname = usePathname();
-  const searchParams = useSearchParams();
-  const current = new URLSearchParams(Array.from(searchParams.entries()));
+  // const router = useRouter();
+  // const pathname = usePathname();
+  // const searchParams = useSearchParams();
+  // const current = new URLSearchParams(Array.from(searchParams.entries()));
 
   const { width } = useDeviceInfo();
-  const [search, setSearch] = useState<string>("");
+  // const [search, setSearch] = useState<string>("");
 
   const { data, error, isLoading } = useGet<SearchType>({
     fetchRecord: getSearch,
-    IsFetch: search?.length > 0 ? true : false,
+    IsFetch: true,
     recordName: "searchPage",
     recordQuery: { query: searchQuery, page },
   });
 
-  const onSearch = (queryString: string) => {
-    const query = search ? `?${queryString}` : "";
-    router.push(`${pathname}${query}`);
-  };
+  // const onSearch = (queryString: string) => {
+  //   const query = search ? `?${queryString}` : "";
+  //   router.push(`${pathname}${query}`);
+  // };
 
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const value = e.target.value.trim();
-    if (!value) {
-      current.delete("");
-    } else {
-      current.set("searchQuery", e.target.value);
-      current.set("page", "1");
-    }
-    const queryString = current.toString();
-    onSearch(queryString);
-    setSearch(e.target.value);
-  };
+  // const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+  //   const value = e.target.value.trim();
+  //   if (!value) {
+  //     current.delete("");
+  //   } else {
+  //     current.set("searchQuery", e.target.value);
+  //     current.set("page", "1");
+  //   }
+  //   const queryString = current.toString();
+  //   onSearch(queryString);
+  //   setSearch(e.target.value);
+  // };
 
   return (
     <div className="mt-5 flex gap-x-4 flex-col w-full ">
@@ -69,7 +69,7 @@ function SearcheddMovies({
       </div> */}
       <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {data?.results.length === 0 && (
-          <div className="mx-auto">No Movies or Shows Found</div>
+          <div className="w-96 mx-auto">No Movies or Shows Found</div>
         )}
 
         {data?.results?.map((media) => {
