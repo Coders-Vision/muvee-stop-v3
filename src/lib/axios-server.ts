@@ -2,12 +2,13 @@
 
 import axios, { AxiosError, AxiosRequestConfig, AxiosResponse } from "axios";
 import { ResponseError, ResponseSuccess } from "./api-response";
+import { TMDB_LANGUAGE,TMDB_INCLUDE_ADULT } from "@/constants/tmdb-contants";
 export const BASE_URL = `${process.env.TMDB_URL}`;
 
 const commonParams = {
   api_key: process.env.TMDB_API_KEY,
-  include_adult: false,
-  language: "en-US",
+  include_adult: TMDB_INCLUDE_ADULT,
+  language: TMDB_LANGUAGE
   // page: 1,
 };
 

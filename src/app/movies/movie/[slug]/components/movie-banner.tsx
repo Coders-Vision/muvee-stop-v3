@@ -21,7 +21,7 @@ function MovieBanner({ movie }: { movie: Movie }) {
       {!showPlayer ? (
         <>
           <ImageWithFallback
-            fallback="/images/default-banner.svg"
+            fallback="/images/default-landscape.svg"
             src={getBannerImage(movie.backdrop_path)}
             alt={`${movie.title}`}
             placeholder="empty"

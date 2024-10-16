@@ -3,6 +3,7 @@ import Container from "@/layout/container";
 import { MovieFilterParams } from "@/types/filter/filter-params";
 import { Metadata } from "next";
 import MoviesPaginated from "@/components/movie-paginated";
+// import MovieInfiniteScroll from "@/components/movie-infinite-scroll";
 
 type PopularMovie = {
   searchParams: MovieFilterParams;
@@ -26,6 +27,10 @@ async function Popular({ searchParams }: PopularMovie) {
         movies={popularMovies}
         paginatePath={"/movies/popular"}
       />
+      {/* <MovieInfiniteScroll
+        movies={popularMovies}
+        paginatePath="/movies/popular"
+      /> */}
     </Container>
   );
 }

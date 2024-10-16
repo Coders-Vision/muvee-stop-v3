@@ -32,7 +32,7 @@ function ImageWithFallback({
         onError={() => setError(new Error("Image failed to load"))}
         onLoad={() => setLoaded(true)}
         // src={error || !loaded ? fallback : src}
-        src={error ? defaultImage : src}
+        src={error ? fallback : src}
         className={cn(
           `transition-opacity duration-[2s] ${
             !loaded ? "opacity-0" : "ease-in duration-100"

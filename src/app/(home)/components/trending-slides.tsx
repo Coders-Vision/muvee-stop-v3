@@ -26,7 +26,7 @@ function Trending({ movie }: { movie: MovieResult }) {
         <div className="relative">
           <div className="absolute rounded-2xl inset-0 bg-zinc-800 opacity-50 h-full w-full z-50 hover:shadow-[0px_2px_45px_20px_rgba(73,128,205,1)_inset] transition duration-300"></div>
           <ImageWithFallback
-            fallback="/images/default-banner.svg"
+            fallback="/images/default-landscape.svg"
             src={getBannerImage(backdrop_path || "")}
             alt={`${title}`}
             placeholder="empty"

@@ -18,7 +18,7 @@ function ShowBanner({ show }: { show: Show }) {
       {!showPlayer ? (
         <>
           <ImageWithFallback
-            fallback="/images/default-banner.svg"
+           fallback="/images/default-landscape.svg"
             src={getBannerImage(show.backdrop_path)}
             alt={`${show.original_name}`}
             placeholder="empty"
