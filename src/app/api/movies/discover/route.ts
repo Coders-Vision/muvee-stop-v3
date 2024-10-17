@@ -2,6 +2,8 @@ import { axiosInstance } from "@/lib/axios-server";
 import { AxiosError } from "axios";
 import { NextResponse } from "next/server";
 
+export const runtime = process.env.RUNTIME;
+
 export async function GET(req: Request) {
   const url = new URL(req.url);
   // 1. const page = url.searchParams.get("page");

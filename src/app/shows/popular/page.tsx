@@ -8,6 +8,7 @@ type PopularShow = {
   searchParams: ShowFilterParams;
 };
 
+export const runtime = process.env.RUNTIME;
 //Next js SEO Tag Generation
 export const metadata: Metadata = {
   title: "Popular Shows",

@@ -11,6 +11,8 @@ type StudioShows = {
   };
   searchParams: ShowFilterParams;
 };
+
+export const runtime = process.env.RUNTIME;
 export const metadata: Metadata = {
   title: "Studio Shows",
 };

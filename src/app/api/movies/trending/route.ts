@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { axiosInstance } from "@/lib/axios-server";
 
+export const runtime = process.env.RUNTIME;
+
 export async function GET(_req: Request) {
   try {
     const trending = await axiosInstance.get("/trending/movie/day");

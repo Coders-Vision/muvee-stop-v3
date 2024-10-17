@@ -18,6 +18,7 @@ import { getMovieProviders } from "@/actions/movies/movie-providers";
 import StudioSlider from "@/components/studio-slider";
 
 export const revalidate = 3600;
+export const runtime = process.env.RUNTIME;
 
 async function getNowPlaying(): Promise<NowPlaying> {
   const res = await fetch(`${getCurrentHost()}/api/movies/now-playing`);

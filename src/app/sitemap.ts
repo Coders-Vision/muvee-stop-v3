@@ -2,6 +2,8 @@ import getCurrentHost from "@/lib/get-current-host";
 import { createUrlSLug } from "@/lib/slugify";
 import { NowPlaying } from "@/types/movie/now-playing";
 
+export const runtime = process.env.RUNTIME;
+
 async function sitemap() {
   // async function getNowPlaying(): Promise<NowPlaying> {
   //   const res = await fetch(`${getCurrentHost()}/api/movies/now-playing`);

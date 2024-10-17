@@ -8,6 +8,7 @@ import ShowSeasons from "./components/show-seasons";
 import SimilarShows from "./components/similar-shows";
 import ShowCast from "./components/show-cast";
 
+export const runtime = process.env.RUNTIME;
 export const revalidate = 3600;
 
 type ShowPage = {

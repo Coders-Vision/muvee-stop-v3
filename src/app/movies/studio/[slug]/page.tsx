@@ -12,6 +12,7 @@ type StudioMovies = {
   searchParams: MovieFilterParams;
 };
 
+export const runtime = process.env.RUNTIME;
 export const metadata: Metadata = {
   title: "Studio Movies",
 };
