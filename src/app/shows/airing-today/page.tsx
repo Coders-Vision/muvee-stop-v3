@@ -13,7 +13,7 @@ type AiringTodayShow = {
 export const metadata: Metadata = {
   title: "Shows Airing Today",
 };
-export const runtime = process.env.RUNTIME;
+export const runtime = 'edge'
 
 async function AiringToday({ searchParams }: AiringTodayShow) {
   const getTodaysDate = getDate();

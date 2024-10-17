@@ -14,7 +14,7 @@ import { ImageResponse } from "next/og";
 
 import { getMovieDetails } from "@/actions/movies/get-movie-details";
 // Route segment config
-export const runtime = process.env.RUNTIME;
+export const runtime = 'edge'
 
 // Image metadata
 export const alt = "movie_name";

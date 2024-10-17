@@ -15,7 +15,7 @@ import { ImageResponse } from "next/og";
 import { getShowDetails } from "@/actions/shows/get-show-details";
 import getCurrentHost from "@/lib/get-current-host";
 // Route segment config
-export const runtime = process.env.RUNTIME;
+export const runtime = 'edge'
 
 // Image metadata
 export const alt = "movie_name";

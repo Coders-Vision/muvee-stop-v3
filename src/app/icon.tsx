@@ -2,7 +2,7 @@ import getCurrentHost from "@/lib/get-current-host";
 import { ImageResponse } from "next/og";
 
 // Route segment config
-export const runtime = process.env.RUNTIME;
+export const runtime = 'edge'
 // Image metadata
 export const size = {
   width: 32,

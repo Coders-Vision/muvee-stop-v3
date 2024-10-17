@@ -8,7 +8,7 @@ type TopRatedShow = {
   searchParams: ShowFilterParams;
 };
 
-export const runtime = process.env.RUNTIME;
+export const runtime = 'edge'
 //Next js SEO Tag Generation
 export const metadata: Metadata = {
   title: "Top Rated Shows",

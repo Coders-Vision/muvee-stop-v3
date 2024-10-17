@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { axiosInstance } from "@/lib/axios-server";
 
-export const runtime = process.env.RUNTIME;
+export const runtime = 'edge'
 
 export async function GET(_req: Request) {
   try {

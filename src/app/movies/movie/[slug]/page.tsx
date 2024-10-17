@@ -8,7 +8,7 @@ import MovieCast from "./components/movie-cast";
 import SimilarMovies from "./components/similar-movies";
 import { notFound } from "next/navigation";
 
-export const runtime = process.env.RUNTIME;
+export const runtime = 'edge'
 export const revalidate = 3600;
 
 type MoviePage = {

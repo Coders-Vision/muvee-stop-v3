@@ -11,7 +11,7 @@ type PersonPage = {
     slug: string;
   };
 };
-export const runtime = process.env.RUNTIME;
+export const runtime = 'edge'
 
 //Next js SEO Tag Generation
 export async function generateMetadata({

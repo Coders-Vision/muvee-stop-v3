@@ -2,7 +2,7 @@ import getCurrentHost from "@/lib/get-current-host";
 import { createUrlSLug } from "@/lib/slugify";
 import { NowPlaying } from "@/types/movie/now-playing";
 
-export const runtime = process.env.RUNTIME;
+export const runtime = 'edge'
 
 async function sitemap() {
   // async function getNowPlaying(): Promise<NowPlaying> {

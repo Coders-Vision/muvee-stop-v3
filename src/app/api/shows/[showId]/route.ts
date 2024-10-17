@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 // import { getShowDetails } from "@/actions/shows/get-show-details";
 
-export const runtime = process.env.RUNTIME;
+export const runtime = 'edge'
 
 export async function GET(
   _req: Request,

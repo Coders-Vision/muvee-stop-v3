@@ -10,7 +10,7 @@ import { getSearch } from "@/actions/search";
 import { SearchType } from "@/types/search/search";
 import { Metadata } from "next";
 
-export const runtime = process.env.RUNTIME;
+export const runtime = 'edge'
 type SearchPage = {
   searchParams: SearchParams;
 };
