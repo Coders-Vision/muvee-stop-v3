@@ -20,7 +20,7 @@ const inter = Inter({ subsets: ["latin"] });
 //   "use server";
 //   return new URL(getCurrentHost());
 // };
-
+export const runtime = "edge";
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.DEPOLY_URL || "/"),
   title: {
