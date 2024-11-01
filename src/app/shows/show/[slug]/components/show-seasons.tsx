@@ -17,8 +17,10 @@ import {
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
+import { createUrlSLug } from "@/lib/slugify";
+import Link from "next/link";
 
-function Season({ season }: { season: SeasonType }) {
+function Season({ season, showUrl }: { season: SeasonType; showUrl: string }) {
   const { poster_path, name, overview } = season;
   const [open, setOpen] = useState(false);
 
@@ -44,16 +46,20 @@ function Season({ season }: { season: SeasonType }) {
           <div className="flex flex-col justify-center items-center my-2">
             <Card className="w-[100px] md:w-[150px] lg:w-[175px] rounded-xl shadow-xl cursor-pointer border-[3px] border-[#f9f9f9] border-opacity-10 hover:border-opacity-80 hover:shadow-2xl transform hover:scale-105 transition duration-300">
               <CardContent className="p-0">
-                <ImageWithFallback
-                  src={getPosterImage(poster_path)}
-                  alt={`${name}`}
-                  placeholder="empty"
-                  loading="eager"
-                  width={175} // Set a fixed width
-                  height={260} // Set a fixed height based on the image aspect ratio
-                  sizes="100vw"
-                  className="object-contain w-full h-auto rounded-xl"
-                />
+                <Link
+                  href={`/shows/show/${showUrl}/season/${season.season_number}`}
+                >
+                  <ImageWithFallback
+                    src={getPosterImage(poster_path)}
+                    alt={`${name}`}
+                    placeholder="empty"
+                    loading="eager"
+                    width={175} // Set a fixed width
+                    height={260} // Set a fixed height based on the image aspect ratio
+                    sizes="100vw"
+                    className="object-contain w-full h-auto rounded-xl"
+                  />
+                </Link>
               </CardContent>
             </Card>
             <h6 className="text-center mt-2 text-sm">{name}</h6>
@@ -73,7 +79,7 @@ function Season({ season }: { season: SeasonType }) {
   );
 }
 
-function ShowSeasons({ show }: { show: Show }) {
+function ShowSeasons({ show, showUrl }: { show: Show; showUrl: string }) {
   const { seasons } = show;
 
   return (
@@ -106,7 +112,7 @@ function ShowSeasons({ show }: { show: Show }) {
           >
             {seasons.map((result) => (
               <SwiperSlide key={result.id}>
-                <Season season={result} />
+                <Season showUrl={showUrl} season={result} />
               </SwiperSlide>
             ))}
           </Swiper>
