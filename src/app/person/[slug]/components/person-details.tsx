@@ -5,6 +5,7 @@ import { Person } from "@/types/people/person";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { getPosterImage } from "@/lib/get-image-path";
+import ImageWithFallback from "@/components/image-with-fallback";
 
 function PersonDetails({ person }: { person: Person }) {
   const [showMore, setShowMore] = useState(false);
@@ -23,8 +24,8 @@ function PersonDetails({ person }: { person: Person }) {
   return (
     <div className="flex flex-col justify-center items-center lg:flex-row lg:justify-normal">
       <div className="flex-shrink-0">
-        <Image
-          src={getPosterImage(images.profiles[0].file_path)}
+        <ImageWithFallback
+          src={getPosterImage(images.profiles[0]?.file_path)}
           alt={`${person.name}`}
           placeholder="empty"
           width="0"
@@ -58,16 +59,18 @@ function PersonDetails({ person }: { person: Person }) {
           <span className="font-bold">Height: </span>
           {gender === 1 ? "Female" : person.gender === 2 ? "Male" : "Other"}
         </h3>
-        <p>
-          {showMore ? biography : `${biography.substring(0, 250)}`}
-          <Button
-            className="my-2 bg-transparent hover:bg-transparent text-white hover:underline"
-            size={"sm"}
-            onClick={() => setShowMore(!showMore)}
-          >
-            {showMore ? "Show less" : "Show more"}
-          </Button>
-        </p>
+        {biography && (
+          <p>
+            {showMore ? biography : `${biography.substring(0, 250)}`}
+            <Button
+              className="my-2 bg-transparent hover:bg-transparent text-white hover:underline"
+              size={"sm"}
+              onClick={() => setShowMore(!showMore)}
+            >
+              {showMore ? "Show less" : "Show more"}
+            </Button>
+          </p>
+        )}
       </div>
     </div>
   );

@@ -36,16 +36,24 @@ function Filmography({ personId }: { personId: number }) {
     </div>
   ) : (
     <div className="mx-2 my-8">
-      <h4 className="font-extrabold text-2xl my-2 ml-2">Filmography</h4>
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
-        {filmography.results?.map((film, index) => (
-          <MovieCard
-            key={film.id}
-            movie={film as Result}
-            showDescription={true}
-          />
-        ))}
-      </div>
+      {filmography?.results?.length ? (
+        <>
+          <h4 className="font-extrabold text-2xl my-2 ml-2">Filmography</h4>
+          <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5">
+            {filmography.results?.map((film, index) => (
+              <MovieCard
+                key={film.id}
+                movie={film as Result}
+                showDescription={true}
+              />
+            ))}
+          </div>
+        </>
+      ) : (
+        <div className="text-center">
+          <h4 className="text-2xl my-2 ml-2">No Filmography</h4>
+        </div>
+      )}
     </div>
   );
 }

@@ -72,7 +72,7 @@ async function Show({ params }: ShowPage) {
       </section>
       <section>
         <Container>
-          <ShowSeasons show={show} />
+          <ShowSeasons show={show} showUrl={params.slug} />
         </Container>
       </section>
       <section className="mt-4">
