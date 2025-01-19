@@ -10,6 +10,7 @@ import ImageWithFallback from "@/components/image-with-fallback";
 import { getOriginalImage, getPosterImage } from "@/lib/get-image-path";
 import useGet from "@/hooks/api/use-get";
 import { getSearch } from "@/actions/search";
+import { useDebounce } from "@/hooks/use-debounce";
 // import { searchQuery } from "@/client-apis/search-query";
 
 function Suggestions({
@@ -132,6 +133,7 @@ function Suggestions({
 
 function Search() {
   const [search, setSearch] = useState<string>("");
+  const debouncedValue = useDebounce(search);
   const router = useRouter();
   // const [searchResult, setSearchResult] = useState<SearchResult[]>([]);
 
@@ -139,7 +141,7 @@ function Search() {
     fetchRecord: getSearch,
     IsFetch: search.length > 0 ? true : false,
     recordName: "search",
-    recordQuery: { query: search },
+    recordQuery: { query: debouncedValue },
   });
 
   const searchList = Array.isArray(data?.results)
