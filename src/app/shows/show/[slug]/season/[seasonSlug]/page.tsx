@@ -3,9 +3,10 @@ import { createUrlSLug } from "@/lib/slugify";
 import Container from "@/layout/container";
 import SeasonBannner from "./components/season-banner";
 import { getSeasonDetails } from "@/actions/shows/get-season-details";
-import Episodes from "./components/episodes";
+import SeasonEpisodes from "./components/season-episodes";
 import { getShowDetails } from "@/actions/shows/get-show-details";
 import { formatDate } from "@/lib/date-funcs";
+import SeasonOverview from "./components/season-overview";
 
 export const revalidate = 3600;
 
@@ -72,8 +73,14 @@ async function Season({ params }: SeasonPage) {
     <>
       <SeasonBannner show={showDetails} season={seasonDetails} />
       <Container>
+        {seasonDetails.overview && (
+          <div className="my-8">
+            <SeasonOverview season={seasonDetails} />
+          </div>
+        )}
+
         <div className="my-8">
-          <Episodes episodes={seasonDetails.episodes} />
+          <SeasonEpisodes episodes={seasonDetails.episodes} />
         </div>
       </Container>
     </>

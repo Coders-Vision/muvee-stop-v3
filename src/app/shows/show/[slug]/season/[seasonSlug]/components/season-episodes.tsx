@@ -12,9 +12,9 @@ import { getBannerImageSmall } from "@/lib/get-image-path";
 import { generateSeasonsEpisodeCode } from "@/lib/misc-funcs";
 import { Episode } from "@/types/show/season";
 
-function Episodes({ episodes }: { episodes: Episode[] }) {
+function SeasonEpisodes({ episodes }: { episodes: Episode[] }) {
   return (
-    <div>
+    <div className="mx-2">
       <h1 className="font-extrabold text-2xl my-2 ml-2">
         Episodes ({episodes.length})
       </h1>
@@ -23,7 +23,7 @@ function Episodes({ episodes }: { episodes: Episode[] }) {
           {episodes.map((episode) => (
             <AccordionItem key={episode.id} value={`${episode.id}`}>
               <AccordionTrigger className="hover:no-underline">
-                <div>
+                <div className="text-left">
                   <span className="font-black">
                     {generateSeasonsEpisodeCode(
                       episode.season_number,
@@ -50,13 +50,13 @@ function Episodes({ episodes }: { episodes: Episode[] }) {
                     />
                     {/* Play button overlay */}
                     <div className="absolute inset-0 flex items-center justify-center">
-                      <button className="w-[60px] h-[60px] rounded-full flex items-center justify-center bg-white bg-opacity-35 hover:bg-opacity-75">
+                      {/* <button className="w-[60px] h-[60px] rounded-full flex items-center justify-center bg-white bg-opacity-35 hover:bg-opacity-75">
                         <Lucide
                           name="Play"
                           size="40px"
                           className="text-ms-green"
                         />
-                      </button>
+                      </button> */}
                     </div>
                   </div>
                   <div className="md:mx-4">
@@ -71,7 +71,8 @@ function Episodes({ episodes }: { episodes: Episode[] }) {
                       </div>
                       <div className="text-xs font-thin flex items-center gap-2">
                         <Lucide name="Tv" size="20px" />
-                        {formatDate(episode.air_date, "PPP")}
+                        {episode.air_date &&
+                          formatDate(episode.air_date, "PPP")}
                       </div>
                     </div>
                   </div>
@@ -85,4 +86,4 @@ function Episodes({ episodes }: { episodes: Episode[] }) {
   );
 }
 
-export default Episodes;
+export default SeasonEpisodes;
