@@ -6,9 +6,9 @@ import { MovieFilterParams } from "@/types/filter/filter-params";
 import { Metadata } from "next";
 
 type StudioMovies = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
   searchParams: MovieFilterParams;
 };
 
@@ -16,7 +16,9 @@ export const metadata: Metadata = {
   title: "Studio Movies",
 };
 
-async function StudioMovies({ params, searchParams }: StudioMovies) {
+async function StudioMovies(props: StudioMovies) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const providerId = params.slug.split("-")[0];
   const studioMovies = await discoverMovies({
     page: searchParams?.page,

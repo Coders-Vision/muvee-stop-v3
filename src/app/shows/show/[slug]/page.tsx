@@ -11,15 +11,14 @@ import ShowCast from "./components/show-cast";
 export const revalidate = 3600;
 
 type ShowPage = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 //Next js SEO Tag Generation
-export async function generateMetadata({
-  params,
-}: ShowPage): Promise<Metadata> {
+export async function generateMetadata(props: ShowPage): Promise<Metadata> {
+  const params = await props.params;
   const showId = params.slug.split("-")[0];
   const getShow = await getShowDetails(showId);
   try {
@@ -53,7 +52,8 @@ export async function generateMetadata({
   }
 }
 
-async function Show({ params }: ShowPage) {
+async function Show(props: ShowPage) {
+  const params = await props.params;
   const showId = params.slug.split("-")[0];
   const show = await getShowDetails(showId);
 

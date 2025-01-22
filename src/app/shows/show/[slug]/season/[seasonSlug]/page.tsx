@@ -11,16 +11,15 @@ import SeasonOverview from "./components/season-overview";
 export const revalidate = 3600;
 
 type SeasonPage = {
-  params: {
+  params: Promise<{
     slug: string;
     seasonSlug: string;
-  };
+  }>;
 };
 
 //Next js SEO Tag Generation
-export async function generateMetadata({
-  params,
-}: SeasonPage): Promise<Metadata> {
+export async function generateMetadata(props: SeasonPage): Promise<Metadata> {
+  const params = await props.params;
   const showId = params.slug.split("-")[0];
   const season = params.seasonSlug.split("-")[0];
   const showDetails = await getShowDetails(showId);
@@ -62,7 +61,8 @@ export async function generateMetadata({
   }
 }
 
-async function Season({ params }: SeasonPage) {
+async function Season(props: SeasonPage) {
+  const params = await props.params;
   const showId = params.slug.split("-")[0];
   const season = params.seasonSlug.split("-")[0];
 

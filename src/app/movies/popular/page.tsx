@@ -14,7 +14,8 @@ export const metadata: Metadata = {
   title: "Popular Movies",
 };
 
-async function Popular({ searchParams }: PopularMovie) {
+async function Popular(props: PopularMovie) {
+  const searchParams = await props.searchParams;
   const popularMovies = await discoverMovies({
     page: searchParams.page,
     sort_by: "popularity.desc",

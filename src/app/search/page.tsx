@@ -15,9 +15,8 @@ type SearchPage = {
 };
 
 //Next js SEO Tag Generation
-export async function generateMetadata({
-  searchParams,
-}: SearchPage): Promise<Metadata> {
+export async function generateMetadata(props: SearchPage): Promise<Metadata> {
+  const searchParams = await props.searchParams;
   try {
     return {
       title: `Search Results for ${searchParams.searchQuery}`,
@@ -35,7 +34,8 @@ export async function generateMetadata({
   }
 }
 
-async function Search({ searchParams }: SearchPage) {
+async function Search(props: SearchPage) {
+  const searchParams = await props.searchParams;
   const queryClient = new QueryClient();
   await queryClient.prefetchQuery<SearchType>({
     queryKey: [

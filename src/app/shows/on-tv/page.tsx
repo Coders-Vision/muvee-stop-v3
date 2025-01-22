@@ -14,7 +14,8 @@ export const metadata: Metadata = {
   title: "On TV",
 };
 
-async function OnTV({ searchParams }: OnTVShow) {
+async function OnTV(props: OnTVShow) {
+  const searchParams = await props.searchParams;
   const getTodaysDate = getDate();
   const addOneWeek = addDate(7);
 

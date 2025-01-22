@@ -14,7 +14,8 @@ export const metadata: Metadata = {
   title: "Top Rated Movies",
 };
 
-async function UpcomingMovies({ searchParams }: TopRatedMovie) {
+async function UpcomingMovies(props: TopRatedMovie) {
+  const searchParams = await props.searchParams;
 
   const topRatedMovies = await discoverMovies({
     page: searchParams.page,

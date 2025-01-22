@@ -14,7 +14,8 @@ export const metadata: Metadata = {
   title: "Upcoming Movies",
 };
 
-async function UpcomingMovies({ searchParams }: UpcomingMovie) {
+async function UpcomingMovies(props: UpcomingMovie) {
+  const searchParams = await props.searchParams;
   const twoMonthsAdd = addDate(60);
   const fouraMonthsAdd = addDate(240);
 

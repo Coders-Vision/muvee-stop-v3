@@ -6,16 +6,18 @@ import { ShowFilterParams } from "@/types/filter/filter-params";
 import { Metadata } from "next";
 
 type StudioShows = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
   searchParams: ShowFilterParams;
 };
 export const metadata: Metadata = {
   title: "Studio Shows",
 };
 
-async function StudioShows({ params, searchParams }: StudioShows) {
+async function StudioShows(props: StudioShows) {
+  const searchParams = await props.searchParams;
+  const params = await props.params;
   const providerId = params.slug.split("-")[0];
   const studioShows = await discoverShows({
     page: searchParams.page,

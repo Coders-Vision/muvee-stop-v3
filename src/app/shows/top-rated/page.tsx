@@ -14,7 +14,8 @@ export const metadata: Metadata = {
 };
 
 
-async function TopRated({ searchParams }: TopRatedShow) {
+async function TopRated(props: TopRatedShow) {
+  const searchParams = await props.searchParams;
   const topRatedShows = await discoverShows({
     page: searchParams.page,
     sort_by: "vote_average.desc",

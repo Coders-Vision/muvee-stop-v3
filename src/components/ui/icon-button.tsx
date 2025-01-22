@@ -5,7 +5,7 @@ import { Button } from "./button";
 
 interface IconButtonProps {
   onClick: MouseEventHandler<HTMLButtonElement> | undefined;
-  icon: React.ReactElement;
+  icon: React.ReactElement<any>;
   className?: string;
 }
 

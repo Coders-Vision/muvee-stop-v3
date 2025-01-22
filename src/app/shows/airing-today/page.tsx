@@ -14,7 +14,8 @@ export const metadata: Metadata = {
   title: "Shows Airing Today",
 };
 
-async function AiringToday({ searchParams }: AiringTodayShow) {
+async function AiringToday(props: AiringTodayShow) {
+  const searchParams = await props.searchParams;
   const getTodaysDate = getDate();
   const ondeDayDiff = getDifference(1);
 

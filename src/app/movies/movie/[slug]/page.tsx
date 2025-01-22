@@ -11,15 +11,14 @@ import { notFound } from "next/navigation";
 export const revalidate = 3600;
 
 type MoviePage = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 //Next js SEO Tag Generation
-export async function generateMetadata({
-  params,
-}: MoviePage): Promise<Metadata> {
+export async function generateMetadata(props: MoviePage): Promise<Metadata> {
+  const params = await props.params;
   const movieId = params.slug.split("-")[0];
   const getMovie = await getMovieDetails(movieId);
 
@@ -54,7 +53,8 @@ export async function generateMetadata({
   }
 }
 
-async function Movie({ params }: MoviePage) {
+async function Movie(props: MoviePage) {
+  const params = await props.params;
   const movieId = params.slug.split("-")[0];
   const movie = await getMovieDetails(movieId);
   // if (!movie) {

@@ -14,7 +14,8 @@ export const metadata: Metadata = {
   title: "Now Playing Movies",
 };
 
-async function NowPlaying({ searchParams }: NowPlayingMovie) {
+async function NowPlaying(props: NowPlayingMovie) {
+  const searchParams = await props.searchParams;
   const getTodaysDate = getDate();
   const twoWeekDiff = getDifference(14);
 

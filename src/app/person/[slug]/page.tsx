@@ -7,15 +7,14 @@ import Filmography from "./components/filmography";
 import { createUrlSLug } from "@/lib/slugify";
 
 type PersonPage = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
 //Next js SEO Tag Generation
-export async function generateMetadata({
-  params,
-}: PersonPage): Promise<Metadata> {
+export async function generateMetadata(props: PersonPage): Promise<Metadata> {
+  const params = await props.params;
   const persomId = params.slug.split("-")[0];
   const getPerson = await getPersonDetails(parseInt(persomId));
   try {
@@ -49,7 +48,8 @@ export async function generateMetadata({
   }
 }
 
-async function Person({ params }: PersonPage) {
+async function Person(props: PersonPage) {
+  const params = await props.params;
   const persomId = params.slug.split("-")[0];
   const getPerson = await getPersonDetails(parseInt(persomId));
   if (!getPerson) {

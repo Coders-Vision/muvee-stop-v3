@@ -1,9 +1,9 @@
-import { headers } from "next/headers";
+import { headers, type UnsafeUnwrappedHeaders } from "next/headers";
 
 const IS_SERVER = typeof window === "undefined";
 
 export default function getCurrentHost() {
-  const headersList = headers();
+  const headersList = (headers() as unknown as UnsafeUnwrappedHeaders);
   const activePath = headersList.get("host");
   const getDeployEnv =
     process.env.DEPOLY_ENV === "production" ? "https://" : "http://";
