@@ -62,9 +62,9 @@ function ShowCast({ showId }: { showId: number }) {
   return (
     <div className="lg:mt-20 my-4 mx-4 w-full md:w-[600px] lg:w-[400px] select-none  ">
       <h1 className="font-extrabold text-2xl my-2 ml-2">Cast</h1>
-      <div className="h-[45vh]  no-scrollbar overflow-y-auto px-4 py-2">
+      <div className="h-[45vh] no-scrollbar overflow-y-auto px-4 py-2">
         {credit?.cast.map((cast) => (
-          <CastCard cast={cast} key={cast.cast_id} />
+          <CastCard cast={cast} key={cast.name} />
         ))}
       </div>
     </div>
