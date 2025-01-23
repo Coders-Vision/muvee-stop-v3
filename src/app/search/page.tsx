@@ -11,7 +11,7 @@ import { SearchType } from "@/types/search/search";
 import { Metadata } from "next";
 
 type SearchPage = {
-  searchParams: SearchParams;
+  searchParams: Promise<SearchParams>;
 };
 
 //Next js SEO Tag Generation

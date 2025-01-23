@@ -5,7 +5,7 @@ import { Metadata } from "next";
 import ShowsPaginated from "@/components/show-paginated";
 
 type PopularShow = {
-  searchParams: ShowFilterParams;
+  searchParams: Promise<ShowFilterParams>;
 };
 
 //Next js SEO Tag Generation

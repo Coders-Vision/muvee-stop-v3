@@ -6,7 +6,7 @@ import { discoverMovies } from "@/actions/movies/discover-movies";
 import { getDate, getDifference } from "@/lib/date-funcs";
 
 type NowPlayingMovie = {
-  searchParams: MovieFilterParams;
+  searchParams: Promise<MovieFilterParams>;
 };
 
 //Next js SEO Tag Generation

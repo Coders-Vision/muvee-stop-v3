@@ -6,7 +6,7 @@ import ShowsPaginated from "@/components/show-paginated";
 import { getDate, addDate } from "@/lib/date-funcs";
 
 type OnTVShow = {
-  searchParams: ShowFilterParams;
+  searchParams: Promise<ShowFilterParams>;
 };
 
 //Next js SEO Tag Generation

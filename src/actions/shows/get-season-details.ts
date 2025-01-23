@@ -1,11 +1,17 @@
 "use server";
-
-import { axiosInstance } from "@/lib/axios-server";
+import { fetchInstance } from "@/lib/fetch-instance";
 import { Season } from "@/types/show/season";
 
-export async function getSeasonDetails(showId: string, season: string) {
-  const response = await axiosInstance.get(
-    `/tv/${showId}/season/${season}?language=en-US&append_to_response=images,videos`
-  );
-  return response.data as Season;
+export async function getSeasonDetails(
+  showId: string, season: string
+): Promise<Season> {
+  const response = await fetchInstance(`tv/${showId}/season/${season}`, {
+    options: { cache: "no-cache" },
+    params: {
+      language: "en-US",
+      append_to_response: "images,videos",
+    },
+  });
+  return response.json();
 }
+

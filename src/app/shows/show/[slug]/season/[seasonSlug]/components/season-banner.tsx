@@ -33,7 +33,7 @@ function SeasonBanner({ season, show }: { season: Season; show: Show }) {
         <h1 className="text-lg md:text-4xl font-extrabold text-white">
           {show.name} | Season {season.season_number}{" "}
           <span className="font-light">
-            ( {season.air_date && formatDate(season.air_date, "yyyy")})
+            ({season.air_date && formatDate(season.air_date, "yyyy")})
           </span>
         </h1>
 

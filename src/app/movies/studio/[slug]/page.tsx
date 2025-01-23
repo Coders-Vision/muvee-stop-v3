@@ -9,7 +9,7 @@ type StudioMovies = {
   params: Promise<{
     slug: string;
   }>;
-  searchParams: MovieFilterParams;
+  searchParams: Promise<MovieFilterParams>;
 };
 
 export const metadata: Metadata = {

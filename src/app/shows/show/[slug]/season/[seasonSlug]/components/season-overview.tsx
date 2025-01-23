@@ -14,8 +14,8 @@ function SeasonOverview({ season }: { season: Season }) {
       </CardHeader>
       <CardContent className="px-4">
         <p className="text-white text-sm md:text-base leading-tight">
-          {showMore ? season.overview : `${season.overview.substring(0, 250)}...`}
-          {season.overview.length > 200 && (
+          {showMore ? season.overview : `${season.overview.substring(0, 150)}...`}
+          {season.overview.length > 150 && (
             <Button
               className="p-0 mx-1 bg-transparent hover:bg-transparent text-white hover:underline inline"
               size={"sm"}

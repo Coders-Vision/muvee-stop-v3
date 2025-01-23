@@ -9,7 +9,7 @@ type StudioShows = {
   params: Promise<{
     slug: string;
   }>;
-  searchParams: ShowFilterParams;
+  searchParams: Promise<ShowFilterParams>;
 };
 export const metadata: Metadata = {
   title: "Studio Shows",

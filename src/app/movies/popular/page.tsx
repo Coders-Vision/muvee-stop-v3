@@ -6,7 +6,7 @@ import MoviesPaginated from "@/components/movie-paginated";
 // import MovieInfiniteScroll from "@/components/movie-infinite-scroll";
 
 type PopularMovie = {
-  searchParams: MovieFilterParams;
+  searchParams: Promise<MovieFilterParams>;
 };
 
 //Next js SEO Tag Generation

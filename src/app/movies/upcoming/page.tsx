@@ -6,7 +6,7 @@ import { discoverMovies } from "@/actions/movies/discover-movies";
 import { addDate, getDate,  } from "@/lib/date-funcs";
 
 type UpcomingMovie = {
-  searchParams: MovieFilterParams;
+  searchParams: Promise<MovieFilterParams>;
 };
 
 //Next js SEO Tag Generation

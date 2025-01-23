@@ -1,9 +1,11 @@
 "use server";
 
-import { axiosInstance } from "@/lib/axios-server";
+import { fetchInstance } from "@/lib/fetch-instance";
 import { SimilarShows } from "@/types/show/similar-shows";
 
-export async function getSimilarShows(showId: number) {
-  const response = await axiosInstance.get(`/tv/${showId}/similar`);
-  return response.data as SimilarShows;
+export async function getSimilarShows(showId: number): Promise<SimilarShows> {
+  const response = await fetchInstance(`tv/${showId}/similar`, {
+    options: { cache: "no-cache" },
+  });
+  return response.json();
 }

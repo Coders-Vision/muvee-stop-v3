@@ -13,7 +13,7 @@ import { Show } from "@/types/show/show";
 
 export async function getShowDetails(showId: string): Promise<Show> {
   const response = await fetchInstance(`tv/${showId}`, {
-    options: { cache: "no-cache" },
+    options: { cache: "force-cache" },
     params: { language: "en-US", append_to_response: "videos" },
   });
   return response.json();

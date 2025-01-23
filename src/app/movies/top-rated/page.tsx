@@ -6,7 +6,7 @@ import { discoverMovies } from "@/actions/movies/discover-movies";
 
 
 type TopRatedMovie = {
-  searchParams: MovieFilterParams;
+  searchParams: Promise<MovieFilterParams>;
 };
 
 //Next js SEO Tag Generation

@@ -6,7 +6,7 @@ import ShowsPaginated from "@/components/show-paginated";
 import { getDate, getDifference } from "@/lib/date-funcs";
 
 type AiringTodayShow = {
-  searchParams: ShowFilterParams;
+  searchParams: Promise<ShowFilterParams>;
 };
 
 //Next js SEO Tag Generation
