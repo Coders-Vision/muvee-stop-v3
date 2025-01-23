@@ -8,7 +8,6 @@ import MovieCast from "./components/movie-cast";
 import SimilarMovies from "./components/similar-movies";
 import { notFound } from "next/navigation";
 
-export const revalidate = 3600;
 
 type MoviePage = {
   params: Promise<{

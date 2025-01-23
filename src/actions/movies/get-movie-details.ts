@@ -1,11 +1,12 @@
 "use server";
-
-import { axiosInstance } from "@/lib/axios-server";
+// import { axiosInstance } from "@/lib/axios-server";
+import { fetchInstance } from "@/lib/fetch-instance";
 import { Movie } from "@/types/movie/movie";
 
-export async function getMovieDetails(movieId: string) {
-  const response = await axiosInstance.get(
-    `/movie/${movieId}?append_to_response=videos`
-  );
-  return response.data as Movie;
+export async function getMovieDetails(movieId: string):Promise<Movie> {
+  const response = await fetchInstance(`movie/${movieId}`, {
+    options: { cache: "no-cache" },
+    params: { append_to_response: "videos" },
+  });
+  return response.json();
 }

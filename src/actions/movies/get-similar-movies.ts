@@ -1,12 +1,12 @@
 "use server";
+import { fetchInstance } from "@/lib/fetch-instance";
+import { SimilarMovies } from "@/types/movie/similar-movies";
 
-import { axiosInstance } from "@/lib/axios-server";
-import { SimilarMovies,} from "@/types/movie/similar-movies";
-
-
-export async function getSimilarMovies(movieId: number) {
-  const response = await axiosInstance.get(
-    `/movie/${movieId}/similar`
-  );
-  return response.data as SimilarMovies;
+export async function getSimilarMovies(
+  movieId: number
+): Promise<SimilarMovies> {
+  const response = await fetchInstance(`movie/${movieId}/similar`, {
+    options: { cache: "no-cache" },
+  });
+  return response.json();
 }

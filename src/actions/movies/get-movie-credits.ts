@@ -1,11 +1,11 @@
 "use server";
 
 import { Credit } from "@/types/people/cast";
-import { axiosInstance } from "@/lib/axios-server";
+import { fetchInstance } from "@/lib/fetch-instance";
 
-export async function getMovieCredits(movieId: number) {
-  const response = await axiosInstance.get(
-    `/movie/${movieId}/credits`
-  );
-  return response.data as Credit;
+export async function getMovieCredits(movieId: number): Promise<Credit> {
+  const response = await fetchInstance(`movie/${movieId}/credits`, {
+    options: { cache: "no-cache" },
+  });
+  return response.json();
 }
