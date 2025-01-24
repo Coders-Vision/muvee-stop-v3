@@ -13,7 +13,7 @@ import { AiringToday } from "@/types/show/airing-today";
 
 export async function getAiringToday(): Promise<AiringToday> {
   const response = await fetchInstance(`tv/airing_today`, {
-    options: { cache: "no-store" },
+    options: { cache: "no-cache" },
     params: {
       language: "en-US",
       include_adult: "false",

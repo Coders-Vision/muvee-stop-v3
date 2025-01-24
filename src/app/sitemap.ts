@@ -1,8 +1,9 @@
 import getCurrentHost from "@/lib/get-current-host";
-import { createUrlSLug } from "@/lib/slugify";
-import { NowPlaying } from "@/types/movie/now-playing";
+// import { createUrlSLug } from "@/lib/slugify";
+// import { NowPlaying } from "@/types/movie/now-playing";
 
 async function sitemap() {
+  const currentHost = await getCurrentHost();
   // async function getNowPlaying(): Promise<NowPlaying> {
   //   const res = await fetch(`${getCurrentHost()}/api/movies/now-playing`);
   //   return res.json();
@@ -11,7 +12,7 @@ async function sitemap() {
 
   // const nowPlayingMovieLink =
   //   nowPlaying.results.map((movie) => ({
-  //     url: `${getCurrentHost().toString()}/movies/movie/${createUrlSLug(
+  //     url: `${currentHost}/movies/movie/${createUrlSLug(
   //       movie.id + "",
   //       movie.original_title
   //     )}`,
@@ -19,13 +20,13 @@ async function sitemap() {
   //   })) ?? [];
 
   const webLinks = (staticUrl: string) => ({
-    url: `${getCurrentHost().toString()}${staticUrl}`,
+    url: `${currentHost}${staticUrl}`,
     lastModified: new Date(),
   });
 
   return [
     {
-      url: getCurrentHost().toString(),
+      url: currentHost,
       lastModified: new Date(),
     },
     //Movies

@@ -8,7 +8,7 @@ import { TopRatedTV } from "@/types/show/top-rated-tv";
 
 export async function getNowPlaying(): Promise<NowPlaying> {
   const response = await fetchInstance(`movie/now_playing`, {
-    options: { cache: "no-cache" },
+    options: { cache: "force-cache", next: { revalidate: 60 } }, 
   });
   return response.json();
 }
@@ -22,21 +22,21 @@ export async function getPopularMovies(): Promise<PopularMovieType> {
 
 export async function getTrendingMovies(): Promise<Trending> {
   const response = await fetchInstance(`trending/movie/day`, {
-    options: { cache: "no-cache" },
+    options: { cache: "force-cache", next: { revalidate: 60 } }, 
   });
   return response.json();
 }
 
 export async function getPopularShows(): Promise<PopularShowsType> {
   const response = await fetchInstance(`tv/popular`, {
-    options: { cache: "no-cache" },
+    options: { cache: "force-cache", next: { revalidate: 60 } }, 
   });
   return response.json();
 }
 
 export async function getTopRatedShows(): Promise<TopRatedTV> {
   const response = await fetchInstance(`tv/top_rated`, {
-    options: { cache: "no-cache" },
+    options: { cache: "force-cache", next: { revalidate: 60 } }, 
   });
   return response.json();
 }

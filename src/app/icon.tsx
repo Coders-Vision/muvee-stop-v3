@@ -2,7 +2,7 @@ import getCurrentHost from "@/lib/get-current-host";
 import { ImageResponse } from "next/og";
 
 // Route segment config
-export const runtime = process.env.RUNTIME!;
+export const runtime ="edge"
 
 // Image metadata
 export const size = {
@@ -12,18 +12,18 @@ export const size = {
 export const contentType = "image/png";
 
 // Image generation
-export default function Icon() {
+export default async function Icon() {
+  const currentHost = await getCurrentHost();
   return new ImageResponse(
     (
       // ImageResponse JSX element
       <div tw="w-full h-full flex items-center justify-center bg-none  ">
         <img
-          src={`${getCurrentHost()}/images/reel.svg`}
+          src={`${currentHost}/images/reel.svg`}
           alt={`muvee_stop`}
           width="175px"
           height="175px"
         />
-          
       </div>
     ),
     // ImageResponse options

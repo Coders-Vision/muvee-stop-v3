@@ -8,13 +8,13 @@ type MoviePage = {
   };
 };
 
-import getCurrentHost from "@/lib/get-current-host";
 import { getBannerImageSmall } from "@/lib/get-image-path";
 import { ImageResponse } from "next/og";
 
 import { getMovieDetails } from "@/actions/movies/get-movie-details";
+import getCurrentHost from "@/lib/get-current-host";
 // Route segment config
-export const runtime = process.env.RUNTIME;
+export const runtime = "edge";
 
 // Image metadata
 export const alt = "movie_name";
@@ -28,6 +28,7 @@ export const contentType = "image/png";
 // Image generation
 export default async function Image({ params }: MoviePage) {
   const movieId = params.slug.split("-")[0];
+  const currentHost = await getCurrentHost();
 
   try {
     const movie = await getMovieDetails(movieId);
@@ -50,7 +51,7 @@ export default async function Image({ params }: MoviePage) {
           />
           <div tw="flex absolute bottom-4 left-4">
             <img
-              src={`${getCurrentHost()}/images/logo/muvee-stop.svg`}
+              src={`${currentHost}/images/logo/muvee-stop.svg`}
               width="125px"
               height="50vh"
             />

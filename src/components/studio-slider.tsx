@@ -47,7 +47,7 @@ function StudioSlider({
       >
         {providers.results.map((result, index) => (
           <SwiperSlide key={index}>
-            <div className="flex flex-col  justify-center items-center my-4">
+            <div className="flex flex-col justify-center items-center my-4">
               <div className="rounded-xl cursor-pointer select-none w-[100px] md:w-[100px]">
                 <Link
                   href={`/${type}/studio/${createUrlSLug(

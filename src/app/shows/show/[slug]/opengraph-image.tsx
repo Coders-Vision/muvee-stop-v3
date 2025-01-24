@@ -13,9 +13,8 @@ type ShowPage = {
 import { getBannerImageSmall } from "@/lib/get-image-path";
 import { ImageResponse } from "next/og";
 import { getShowDetails } from "@/actions/shows/get-show-details";
-import getCurrentHost from "@/lib/get-current-host";
 // Route segment config
-export const runtime = process.env.RUNTIME;
+export const runtime = "edge";
 
 // Image metadata
 export const alt = "movie_name";
@@ -28,6 +27,7 @@ export const contentType = "image/png";
 
 // Image generation
 export default async function Image({ params }: ShowPage) {
+ const currentHost = await getCurrentHost();
   const showId = params.slug.split("-")[0];
   try {
     const show = await getShowDetails(showId);
@@ -50,7 +50,7 @@ export default async function Image({ params }: ShowPage) {
           />
           <div tw="flex absolute bottom-4 left-4">
             <img
-              src={`${getCurrentHost()}/images/logo/muvee-stop.svg`}
+              src={`${currentHost}/images/logo/muvee-stop.svg`}
               width="125px"
               height="50vh"
             />

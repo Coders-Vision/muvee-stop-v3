@@ -8,7 +8,7 @@ export async function getMovieProviders(
   region: string
 ): Promise<MovieProviders> {
   const response = await fetchInstance(`watch/providers/movie`, {
-    options: { cache: "no-cache" },
+    options: { cache: "force-cache", next: { revalidate: 60 } }, 
     params: { watch_region: region },
   });
   return response.json();

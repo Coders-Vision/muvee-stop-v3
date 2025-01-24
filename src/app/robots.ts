@@ -1,13 +1,14 @@
 import getCurrentHost from "@/lib/get-current-host";
 import { MetadataRoute } from "next";
 
-export default function robots(): MetadataRoute.Robots {
+export default async function robots(): Promise<MetadataRoute.Robots> {
+  const currentHost = await getCurrentHost();
   return {
     rules: {
       userAgent: "*",
       allow: "/",
       disallow: "/private/",
     },
-    sitemap: `${getCurrentHost()}`,
+    sitemap: `${currentHost}`,
   };
 }
