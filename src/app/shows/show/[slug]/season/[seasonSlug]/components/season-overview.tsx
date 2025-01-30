@@ -12,18 +12,18 @@ function SeasonOverview({ season }: { season: Season }) {
       <CardHeader>
         <h1 className="text-xl md:text-2xl font-bold ">Season Overview</h1>
       </CardHeader>
-      <CardContent className="px-4">
+      <CardContent className="">
         <p className="text-white text-sm md:text-base leading-tight">
-          {showMore ? season.overview : `${season.overview.substring(0, 150)}...`}
-          {season.overview.length > 150 && (
-            <Button
-              className="p-0 mx-1 bg-transparent hover:bg-transparent text-white hover:underline inline"
-              size={"sm"}
-              onClick={() => setShowMore(!showMore)}
-            >
-              {showMore ? "Show less" : "Show more"}
-            </Button>
-          )}
+          {showMore
+            ? season.overview
+            : `${season.overview.substring(0, 150)}...`}
+          <Button
+            className="p-0 mx-1 bg-transparent hover:bg-transparent text-white hover:underline inline"
+            size={"sm"}
+            onClick={() => setShowMore(!showMore)}
+          >
+            {showMore ? "Show less" : "Show more"}
+          </Button>
         </p>
       </CardContent>
     </Card>

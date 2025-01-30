@@ -1,34 +1,14 @@
-"use client";
-
-import React, { useState } from "react";
 import { Movie } from "@/types/movie/movie";
-import { Share2, StarIcon } from "lucide-react";
+import { StarIcon } from "lucide-react";
 import ImageWithFallback from "@/components/image-with-fallback";
-import { Button } from "@/components/ui/button";
+
 import { getPosterImage } from "@/lib/get-image-path";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { createUrlSLug } from "@/lib/slugify";
+import ShareButton from "@/components/share-button";
+import Overview from "@/components/overview";
 
 function MovieDetails({ movie }: { movie: Movie }) {
-  const [showMore, setShowMore] = useState(false);
-
-  const openShareDrawer = () => {
-    const dataShare = {
-      title: movie.title,
-      text: movie.overview,
-      url: `${process.env.NEXT_PUBLIC_DEPOLY_URL}/movies/movie/${createUrlSLug(
-        `${movie.id}`,
-        movie.title
-      )}`,
-    };
-    if (navigator.share && navigator.canShare(dataShare)) {
-      navigator.share(dataShare);
-    } else {
-      alert("Sharing not supported in this browser");
-    }
-  };
-
   return (
     <div className="relative sm:flex gap-6 mt-20 mx-4 select-none sm:max-w-md sm:mx-auto  lg:max-w-none">
       <div className="relative bg-gradient-to-r from-gray-800 to-gray-600 lg:bg-none md:flex-shrink-0 ">
@@ -45,21 +25,17 @@ function MovieDetails({ movie }: { movie: Movie }) {
       </div>
       <div className="absolute lg:static top-12 mx-2 max-w-[900px] text-opacity-30 text-[.75rem] md:text-[.85rem] lg:text-[1rem]">
         <ScrollArea className="h-[calc(100vh-350px)] md:h-auto">
-
           <div className="flex items-center space-x-6 justify-between">
             <h1 className="text-xl md:text-3xl font-bold my-2">
               {movie.title}
             </h1>
             <span>
-              {!!navigator.canShare && (
-                <Button
-                  onClick={openShareDrawer}
-                  className="flex item-center gap-x-2 bg-transparent border-2 border-white rounded-full text-white"
-                >
-                  <Share2 />
-                  Share
-                </Button>
-              )}
+              <ShareButton
+                id={movie.id}
+                title={movie.title}
+                overview={movie.overview}
+                url="movies/movie"
+              />
             </span>
           </div>
 
@@ -73,22 +49,7 @@ function MovieDetails({ movie }: { movie: Movie }) {
             <div>{new Date(movie.release_date).getFullYear()}</div>
             <div>{movie.runtime} min</div>
           </div>
-          <ScrollArea className="h-[120px] lg:h-auto">
-            <p className="my-2 font-light w-auto ">
-              {showMore
-                ? movie?.overview
-                : `${movie?.overview.substring(0, 250)}`}
-              {movie?.overview.length > 200 && (
-                <Button
-                  className="p-0 mx-1 bg-transparent hover:bg-transparent text-white hover:underline inline"
-                  size={"sm"}
-                  onClick={() => setShowMore(!showMore)}
-                >
-                  {showMore ? "Show less" : "Show more"}
-                </Button>
-              )}
-            </p>
-          </ScrollArea>
+          <Overview overview={movie.overview} />
           <div className="flex gap-4">
             <div className="">
               <div className="my-2 font-light">Type: </div>
