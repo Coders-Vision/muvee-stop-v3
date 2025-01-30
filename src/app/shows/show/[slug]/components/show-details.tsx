@@ -1,17 +1,13 @@
-"use client";
-
-import React, { useState } from "react";
 import { Show } from "@/types/show/show";
 import ImageWithFallback from "@/components/image-with-fallback";
 import { getPosterImage } from "@/lib/get-image-path";
-import { Share2, StarIcon } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { StarIcon } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { createUrlSLug } from "@/lib/slugify";
+import ShareButton from "@/components/share-button";
+import Overview from "@/components/overview";
 
 function ShowDetails({ show }: { show: Show }) {
-  const [showMore, setShowMore] = useState(false);
 
   const {
     id,
@@ -27,22 +23,6 @@ function ShowDetails({ show }: { show: Show }) {
     genres,
     production_companies,
   } = show;
-
-  const openShareDrawer = () => {
-    const dataShare = {
-      title: name,
-      text: overview,
-      url: `${process.env.NEXT_PUBLIC_DEPOLY_URL}/shows/show/${createUrlSLug(
-        `${id}`,
-        name
-      )}`,
-    };
-    if (navigator.share && navigator.canShare(dataShare)) {
-      navigator.share(dataShare);
-    } else {
-      alert("Sharing not supported in this browser");
-    }
-  };
 
   return (
     <div className="relative sm:flex gap-6 mt-20 mx-4 select-none sm:max-w-md sm:mx-auto  lg:max-w-none">
@@ -64,15 +44,12 @@ function ShowDetails({ show }: { show: Show }) {
           <div className="flex items-center space-x-6 justify-between">
             <h1 className="text-xl md:text-3xl font-bold my-2">{name}</h1>
             <span>
-              {!!navigator.canShare && (
-                <Button
-                  onClick={openShareDrawer}
-                  className="flex item-center gap-x-2 bg-transparent border-2 border-white rounded-full text-white"
-                >
-                  <Share2 />
-                  Share
-                </Button>
-              )}
+              <ShareButton
+                id={show.id}
+                title={show.name}
+                overview={show.overview}
+                url="shows/show"
+              />
             </span>
           </div>
 
@@ -86,20 +63,7 @@ function ShowDetails({ show }: { show: Show }) {
             <div>{new Date(first_air_date).getFullYear()}</div>
             <div>{number_of_seasons} Seasons</div>
           </div>
-          <ScrollArea className="h-[120px] lg:h-auto">
-            <p className="my-2 font-light w-auto ">
-              {showMore ? overview : `${overview.substring(0, 250)}`}
-              {overview.length > 200 && (
-                <Button
-                  className="p-0 mx-1 bg-transparent hover:bg-transparent text-white hover:underline inline"
-                  size={"sm"}
-                  onClick={() => setShowMore(!showMore)}
-                >
-                  {showMore ? "Show less" : "Show more"}
-                </Button>
-              )}
-            </p>
-          </ScrollArea>
+          <Overview overview={show.overview} />
           <div className="flex gap-4">
             <div className="">
               <div className="my-2 font-light">Type: </div>
