@@ -3,9 +3,9 @@ import React, { useState } from "react";
 import { Show } from "@/types/show/show";
 import VideoPlayer from "@/components/video-player";
 import ImageWithFallback from "@/components/image-with-fallback";
-import IconButton from "@/components/ui/icon-button";
 import { PlayCircle } from "lucide-react";
 import { getBannerImage } from "@/lib/get-image-path";
+import EventButton from "@/components/analytics/event-button";
 
 function ShowBanner({ show }: { show: Show }) {
   const [showPlayer, setShowPlayer] = useState<boolean>(false);
@@ -18,7 +18,7 @@ function ShowBanner({ show }: { show: Show }) {
       {!showPlayer ? (
         <>
           <ImageWithFallback
-           fallback="/images/default-landscape.svg"
+            fallback="/images/default-landscape.svg"
             src={getBannerImage(show.backdrop_path)}
             alt={`${show.original_name}`}
             placeholder="empty"
@@ -29,11 +29,14 @@ function ShowBanner({ show }: { show: Show }) {
             className="w-full h-auto aspect-[16/9] md:aspect-[2.7/1] object-cover"
           />
           {show.videos?.results[trailerIndex]?.key && (
-            <IconButton
-              icon={<PlayCircle size={50} color="#6ebf8a" />}
+            <EventButton
+              event="play-show-trailer"
+              value={show.name}
               onClick={() => setShowPlayer(true)}
-              className="absolute top-[50%] left-[45%]  bg-transparent rounded-full  hover:bg-transparent"
-            />
+              className="absolute inset-0 flex items-center justify-center bg-transparent rounded-full hover:bg-transparent top-1/2 transform -translate-y-1/2"
+            >
+              <PlayCircle size={50} color="#6ebf8a" />
+            </EventButton>
           )}
         </>
       ) : (

@@ -2,11 +2,11 @@
 
 import React, { useState } from "react";
 import { Movie } from "@/types/movie/movie";
-import IconButton from "@/components/ui/icon-button";
 import { PlayCircle } from "lucide-react";
 import ImageWithFallback from "@/components/image-with-fallback";
 import VideoPlayer from "@/components/video-player";
 import { getBannerImage } from "@/lib/get-image-path";
+import EventButton from "@/components/analytics/event-button";
 // import VideoPlayerModal from "@/components/video-player-modal";
 
 function MovieBanner({ movie }: { movie: Movie }) {
@@ -32,11 +32,14 @@ function MovieBanner({ movie }: { movie: Movie }) {
             className="w-full h-auto aspect-[16/9] md:aspect-[2.7/1] object-cover"
           />
           {movie.videos?.results[trailerIndex]?.key && (
-            <IconButton
-              icon={<PlayCircle size={50} color="#6ebf8a" />}
+            <EventButton
+              event="play-movie-trailer"
+              value={movie.title}
               onClick={() => setShowPlayer(true)}
-              className="absolute top-[50%] left-[45%]  bg-transparent rounded-full  hover:bg-transparent"
-            />
+              className="absolute inset-0 flex items-center justify-center bg-transparent rounded-full hover:bg-transparent top-1/2 transform -translate-y-1/2"
+            >
+              <PlayCircle size={50} color="#6ebf8a" />
+            </EventButton>
           )}
         </>
       ) : (
