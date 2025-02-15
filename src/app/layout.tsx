@@ -12,7 +12,7 @@ import { data } from "@/lib/seo-data";
 // import GoogleAnalytics from "@/analytics/google/google-analytics";
 import { GoogleTagManager } from "@next/third-parties/google";
 
-export const revalidate = 3600; // revalidate at most every hour
+// export const revalidate = 3600; // revalidate at most every hour
 
 const inter = Inter({ subsets: ["latin"] });
 
