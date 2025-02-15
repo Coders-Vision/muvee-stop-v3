@@ -40,14 +40,16 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        {/* //Custom Implementation of Google Tags */}
-        {/* <GoogleTagManager
+      {/* Next JS In-built implementation */}
+      <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_MUVEE_STOP_GTM || ""} />
+      {/* <head>
+        //Custom Implementation of Google Tags
+        <GoogleTagManager
           GTM_ID={process.env.NEXT_PUBLIC_MUVEE_STOP_GTM || ""}
-        /> */}
-        {/* OR */}
-        {/* <GoogleAnalytics GA_MEASUREMENT_ID="G-0000000000" /> */}
-      </head>
+        />
+        // OR
+        <GoogleAnalytics GA_MEASUREMENT_ID="G-0000000000" />
+      </head> */}
       <body className={inter.className}>
         {/* <NextTopLoader
           color="#6ebf8a"
@@ -70,10 +72,6 @@ export default function RootLayout({
           <Footer />
           {/* <CookieBanner /> */}
         </Providers>
-        {/* Next JS In-built implementation */}
-        <GoogleTagManager
-          gtmId={process.env.NEXT_PUBLIC_MUVEE_STOP_GTM || ""}
-        />
       </body>
     </html>
   );
