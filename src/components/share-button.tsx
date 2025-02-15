@@ -1,8 +1,9 @@
 "use client";
-import React, { useState } from "react";
-import { Button } from "@/components/ui/button";
+import React from "react";
+// import { Button } from "@/components/ui/button";
 import { createUrlSLug } from "@/lib/slugify";
 import { Share2 } from "lucide-react";
+import EventButton from "./analytics/event-button";
 
 interface ShareButtonProps {
   id: string | number;
@@ -29,13 +30,15 @@ function ShareButton({ id, overview, title, baseUrl, url }: ShareButtonProps) {
   };
 
   return !!navigator.canShare ? (
-    <Button
+    <EventButton
+      event="share"
+      value={title}
       onClick={openShareDrawer}
       className="flex item-center gap-x-2 bg-transparent border-2 border-white rounded-full text-white"
     >
       <Share2 />
       Share
-    </Button>
+    </EventButton>
   ) : (
     <></>
   );
