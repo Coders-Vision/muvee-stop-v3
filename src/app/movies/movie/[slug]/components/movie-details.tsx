@@ -50,42 +50,45 @@ function MovieDetails({ movie }: { movie: Movie }) {
             <div>{movie.runtime} min</div>
           </div>
           <Overview overview={movie.overview} />
-          <div className="flex gap-4">
-            <div className="">
-              <div className="my-2 font-light">Type: </div>
-              <div className="my-2 font-light">Status: </div>
-              <div className="my-2 font-light">Country: </div>
-              <div className="my-2 font-light">Genre: </div>
-              <div className="my-2 font-light">Release: </div>
+          <dl className="grid grid-cols-[auto,1fr] gap-x-6 gap-y-4">
+            <dt className="text-gray-300 font-light">Type</dt>
+            <dd>Movie</dd>
 
-              <div className="my-2 font-light">Production: </div>
-            </div>
-            <div className="">
-              <div className="my-2">Movie</div>
-              <div className="my-2">{movie.status}</div>
-              <div className="my-2">
-                {movie.production_countries?.map(
-                  (county) => `${county.name}, `
-                )}
-              </div>
-              <div className="my-2 ">
-                {movie.genres.map((genre) => (
-                  <Badge
-                    key={genre.id}
-                    className="bg-ms-blue text-white mr-1 my-1"
-                  >
-                    {genre.name}
-                  </Badge>
-                ))}
-              </div>
-              <div className="my-2">{movie.release_date}</div>
-              <div className="my-2">
-                {movie.production_companies.map(
-                  (company) => `${company.name} `
-                )}
-              </div>
-            </div>
-          </div>
+            <dt className="text-gray-300 font-light">Status</dt>
+            <dd>{movie.status}</dd>
+
+            <dt className="text-gray-300 font-light">Country</dt>
+            <dd>
+              {movie.production_countries?.map((country, index) => (
+                <span key={country.name}>
+                  {country.name}
+                  {index < movie.production_countries.length - 1 ? ", " : ""}
+                </span>
+              ))}
+            </dd>
+
+            <dt className="text-gray-300 font-light">Genre</dt>
+            <dd className="flex flex-wrap gap-2">
+              {movie.genres.map((genre) => (
+                <Badge key={genre.id} className="bg-ms-blue text-white">
+                  {genre.name}
+                </Badge>
+              ))}
+            </dd>
+
+            <dt className="text-gray-300 font-light">Release</dt>
+            <dd>{movie.release_date}</dd>
+
+            <dt className="text-gray-300 font-light">Production</dt>
+            <dd>
+              {movie.production_companies.map((company, index) => (
+                <span key={company.name}>
+                  {company.name}
+                  {index < movie.production_companies.length - 1 ? " • " : ""}
+                </span>
+              ))}
+            </dd>
+          </dl>
         </ScrollArea>
       </div>
     </div>

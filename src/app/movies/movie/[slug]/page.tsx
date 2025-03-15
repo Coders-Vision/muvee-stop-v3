@@ -1,5 +1,6 @@
 import Container from "@/layout/container";
 import { getMovieDetails } from "@/actions/movies/get-movie-details";
+import { getSimilarMovies } from "@/actions/movies/get-similar-movies";
 import { Metadata } from "next";
 import { createUrlSLug } from "@/lib/slugify";
 import MovieBanner from "./components/movie-banner";
@@ -55,30 +56,38 @@ export async function generateMetadata(props: MoviePage): Promise<Metadata> {
 async function Movie(props: MoviePage) {
   const params = await props.params;
   const movieId = params.slug.split("-")[0];
-  const movie = await getMovieDetails(movieId);
-  // if (!movie) {
-  //   notFound();
-  // }
+  
+  const [movie, similarMovies] = await Promise.all([
+    getMovieDetails(movieId),
+    getSimilarMovies(+movieId),
+  ]);
+
+  if (!movie) {
+    notFound();
+  }
 
   return (
-    <>
-      <section>
-        <MovieBanner movie={movie} />
-      </section>
-      <section>
-        <Container>
-          <div className="flex flex-col lg:flex-row justify-center items-center">
+    <main className="flex flex-col min-h-screen space-y-8 pb-8">
+      {/* Hero Banner Section */}
+      <MovieBanner movie={movie} />
+
+      {/* Movie Info Section */}
+      <Container className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+          <div className="lg:col-span-8">
             <MovieDetails movie={movie} />
+          </div>
+          <div className="lg:col-span-4">
             <MovieCast movieId={movie.id} />
           </div>
-        </Container>
-      </section>
-      <section>
-        <Container>
-          <SimilarMovies movieId={movie.id} />
-        </Container>
-      </section>
-    </>
+        </div>
+      </Container>
+
+      {/* Similar Movies Section */}
+      <Container className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <SimilarMovies results={similarMovies.results} />
+      </Container>
+    </main>
   );
 }
 
