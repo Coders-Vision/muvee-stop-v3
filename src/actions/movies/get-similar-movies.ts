@@ -6,7 +6,7 @@ export async function getSimilarMovies(
   movieId: number
 ): Promise<SimilarMovies> {
   const response = await fetchInstance(`movie/${movieId}/similar`, {
-    options: { cache: "no-cache" },
+    options: { cache: "force-cache"},
   });
   return response.json();
 }

@@ -72,7 +72,7 @@ function ShowCard({
                 {show.vote_average?.toFixed(1)}
               </div>
             </div>
-            <div>{new Date(show.first_air_date).getFullYear()}</div>
+            <div>{show.first_air_date?.substring(0,4)}</div>
           </div>
           <p className="my-2 text-[0.75rem]">
             {show.overview.substring(0, 125)}

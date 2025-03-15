@@ -15,7 +15,7 @@ export async function getNowPlaying(): Promise<NowPlaying> {
 
 export async function getPopularMovies(): Promise<PopularMovieType> {
   const response = await fetchInstance(`movie/popular`, {
-    options: { cache: "no-cache" },
+    options: { cache: "force-cache" },
   });
   return response.json();
 }

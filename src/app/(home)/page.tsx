@@ -1,4 +1,3 @@
-
 import Slideshow from "./components/slideshow";
 import Trending from "./components/movies/trending";
 import Popular from "./components/movies/popular";
@@ -21,15 +20,24 @@ import {
 } from "@/actions/home-actions";
 
 export default async function Home() {
-  const nowPlaying = await getNowPlaying();
 
-  const trending = await getTrendingMovies();
-  const popular = await getPopularMovies();
-  const popularShows = await getPopularShows();
-  const topRatedTv = await getTopRatedShows();
-
-  const moviesProviders = await getMovieProviders(TMDB_WATCH_REGION);
-  const showProviders = await getShowProviders(TMDB_WATCH_REGION);
+  const [
+    nowPlaying,
+    trending,
+    popular,
+    popularShows,
+    topRatedTv,
+    moviesProviders,
+    showProviders,
+  ] = await Promise.all([
+    getNowPlaying(),
+    getTrendingMovies(),
+    getPopularMovies(),
+    getPopularShows(),
+    getTopRatedShows(),
+    getMovieProviders(TMDB_WATCH_REGION),
+    getShowProviders(TMDB_WATCH_REGION),
+  ]);
 
   return (
     <>

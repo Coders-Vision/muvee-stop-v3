@@ -1,6 +1,7 @@
 import { Metadata } from "next";
 import { createUrlSLug } from "@/lib/slugify";
 import { getShowDetails } from "@/actions/shows/get-show-details";
+import { getSimilarShows } from "@/actions/shows/get-similar-shows";
 import Container from "@/layout/container";
 import ShowBanner from "./components/show-banner";
 import ShowDetails from "./components/show-details";
@@ -41,7 +42,10 @@ export async function generateMetadata(props: ShowPage): Promise<Metadata> {
           description: getShow.overview,
         },
         alternates: {
-          canonical: `/shows/show/${createUrlSLug(showId, getShow.original_name)}`,
+          canonical: `/shows/show/${createUrlSLug(
+            showId,
+            getShow.original_name
+          )}`,
         },
       };
     }
@@ -55,7 +59,11 @@ export async function generateMetadata(props: ShowPage): Promise<Metadata> {
 async function Show(props: ShowPage) {
   const params = await props.params;
   const showId = params.slug.split("-")[0];
-  const show = await getShowDetails(showId);
+
+  const [show, similarMovies] = await Promise.all([
+    getShowDetails(showId),
+    getSimilarShows(+showId),
+  ]);
 
   return (
     <>
@@ -77,7 +85,7 @@ async function Show(props: ShowPage) {
       </section>
       <section className="mt-4">
         <Container>
-          <SimilarShows showId={show.id} />
+          <SimilarShows results={similarMovies.results} />
         </Container>
       </section>
     </>

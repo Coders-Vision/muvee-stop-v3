@@ -66,8 +66,10 @@ async function Season(props: SeasonPage) {
   const showId = params.slug.split("-")[0];
   const season = params.seasonSlug.split("-")[0];
 
-  const showDetails = await getShowDetails(showId);
-  const seasonDetails = await getSeasonDetails(showId, season);
+  const [showDetails, seasonDetails] = await Promise.all([
+    getShowDetails(showId),
+    getSeasonDetails(showId, season),
+  ]);
 
   return (
     <>

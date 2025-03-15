@@ -8,7 +8,6 @@ import ShareButton from "@/components/share-button";
 import Overview from "@/components/overview";
 
 function ShowDetails({ show }: { show: Show }) {
-
   const {
     id,
     poster_path,
@@ -60,37 +59,48 @@ function ShowDetails({ show }: { show: Show }) {
                 {vote_average?.toFixed(1)}
               </div>
             </div>
-            <div>{new Date(first_air_date).getFullYear()}</div>
+            <div>{first_air_date?.substring(0,4)}</div>
             <div>{number_of_seasons} Seasons</div>
           </div>
           <Overview overview={show.overview} />
-          <div className="flex gap-4">
-            <div className="">
-              <div className="my-2 font-light">Type: </div>
-              <div className="my-2 font-light">Status: </div>
-              <div className="my-2 font-light">Country: </div>
-              <div className="my-2 font-light">Genre: </div>
-              <div className="my-2 font-light">Release: </div>
+          <dl className="grid grid-cols-[auto,1fr] gap-x-6 gap-y-4">
+            <dt className="text-gray-300 font-light">Type</dt>
+            <dd>Show</dd>
 
-              <div className="my-2 font-light">Production: </div>
-            </div>
-            <div className="">
-              <div className="my-2">show</div>
-              <div className="my-2">
-                <Badge className="bg-ms-blue text-white">{status}</Badge>
-              </div>
-              <div className="my-2">
-                {production_countries?.map((county) => `${county.name}`)}
-              </div>
-              <div className="my-2 ">
-                {genres.map((genre) => `${genre.name} `)}
-              </div>
-              {/* <div className="my-2">{release_date}</div> */}
-              <div className="my-2">
-                {production_companies.map((company) => `${company.name} `)}
-              </div>
-            </div>
-          </div>
+            <dt className="text-gray-300 font-light">Status</dt>
+            <dd>
+              <Badge className="bg-ms-blue text-white">{status}</Badge>
+            </dd>
+            <dt className="text-gray-300 font-light">Country</dt>
+            <dd>
+              {production_countries?.map((country, index) => (
+                <span key={country.name}>
+                  {country.name}
+                  {index < production_countries.length - 1 ? ", " : ""}
+                </span>
+              ))}
+            </dd>
+
+            <dt className="text-gray-300 font-light">Genre</dt>
+            <dd className="flex flex-wrap gap-2">
+              {genres.map((genre) => (
+                <Badge key={genre.id} className="bg-ms-blue text-white">
+                  {genre.name}
+                </Badge>
+              ))}
+            </dd>
+            {/* <dt className="text-gray-300 font-light">Release</dt>
+            <dd>{show.release_date}</dd> */}
+            <dt className="text-gray-300 font-light">Production</dt>
+            <dd>
+              {production_companies.map((company, index) => (
+                <span key={company.name}>
+                  {company.name}
+                  {index <production_companies.length - 1 ? " • " : ""}
+                </span>
+              ))}
+            </dd>
+          </dl>
         </ScrollArea>
       </div>
     </div>

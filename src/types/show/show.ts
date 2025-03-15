@@ -3,7 +3,7 @@ export interface Show {
   backdrop_path: string;
   created_by: CreatedBy[];
   episode_run_time: any[];
-  first_air_date: Date;
+  first_air_date: string;
   genres: Genre[];
   homepage: string;
   id: number;
