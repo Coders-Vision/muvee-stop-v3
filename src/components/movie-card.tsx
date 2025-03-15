@@ -75,7 +75,7 @@ function MovieCard({
                 {movie.vote_average?.toFixed(1)}
               </div>
             </div>
-            <div>{new Date(movie.release_date).getFullYear()}</div>
+            <div>{movie.release_date?.substring(0,4)}</div>
           </div>
           <p className="my-2 text-[0.75rem]">
             {movie.overview.substring(0, 125)}

@@ -45,10 +45,10 @@ function Slide({ result }: { result: MovieResult }) {
                 {result.vote_average?.toFixed(1)}
               </div>
             </div>
-            <div>{new Date(result.release_date).getFullYear()}</div>
+            <div>{result.release_date?.substring(0,4)}</div>
           </div>
           <div className="my-2">
-            <p className="hidden md:block text-left">
+            <p className="hidden md:block t4ext-left">
               {result?.overview.slice(0, 150).concat("...") ?? ""}
             </p>
           </div>

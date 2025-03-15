@@ -59,7 +59,7 @@ function ShowDetails({ show }: { show: Show }) {
                 {vote_average?.toFixed(1)}
               </div>
             </div>
-            <div>{new Date(first_air_date).getFullYear()}</div>
+            <div>{first_air_date?.substring(0,4)}</div>
             <div>{number_of_seasons} Seasons</div>
           </div>
           <Overview overview={show.overview} />

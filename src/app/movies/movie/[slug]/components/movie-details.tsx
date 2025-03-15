@@ -46,7 +46,7 @@ function MovieDetails({ movie }: { movie: Movie }) {
                 {movie.vote_average?.toFixed(1)}
               </div>
             </div>
-            <div>{new Date(movie.release_date).getFullYear()}</div>
+            <div>{movie.release_date?.substring(0,4)}</div>
             <div>{movie.runtime} min</div>
           </div>
           <Overview overview={movie.overview} />
