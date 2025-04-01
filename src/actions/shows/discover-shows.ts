@@ -11,7 +11,7 @@ export async function discoverShows(
   query: DiscoverQuery
 ): Promise<DiscoverShows> {
   const response = await fetchInstance(`discover/tv`, {
-    options: { cache: "no-cache" },
+    // options: { cache: "no-cache" },
     params: query,
   });
   return response.json();
