@@ -19,7 +19,7 @@ export async function discoverMovies(
   query: DiscoverQuery
 ): Promise<DiscoverMovies> {
   const response = await fetchInstance(`discover/movie`, {
-    options: { cache: "no-store" },
+    // options: { cache: "no-store" },
     params: query
   });
   return response.json();
