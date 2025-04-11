@@ -62,9 +62,9 @@ async function Movie(props: MoviePage) {
     getSimilarMovies(+movieId),
   ]);
 
-  if (!movie) {
-    notFound();
-  }
+  // if (!movie) {
+  //   notFound();
+  // }
 
   return (
     <main className="flex flex-col min-h-screen space-y-8 pb-8">
