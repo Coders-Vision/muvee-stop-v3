@@ -14,7 +14,12 @@ import { notFound } from "next/navigation";
 
 export async function getShowDetails(showId: string): Promise<Show> {
   const response = await fetchInstance(`tv/${showId}`, {
-    // options: { cache: "force-cache" },
+    options: {
+      next: { 
+        revalidate: 7200,  // 2 hours
+        tags: [`show-${showId}`]  // Add cache tag for targeted revalidation
+      }
+    },
     params: { language: "en-US", append_to_response: "videos" },
   });
 

@@ -8,6 +8,8 @@ import ShowDetails from "./components/show-details";
 import ShowSeasons from "./components/show-seasons";
 import SimilarShows from "./components/similar-shows";
 import ShowCast from "./components/show-cast";
+import { Suspense } from "react";
+import MediaCardSkeleton from "@/components/skeletons/media-card-skeleton";
 
 export const revalidate = 3600;
 
@@ -85,7 +87,15 @@ async function Show(props: ShowPage) {
       </section>
       <section className="mt-4">
         <Container>
-          <SimilarShows results={similarMovies.results} />
+          <Suspense
+            fallback={
+              <div className="flex items-center justify-center gap-x-4 ">
+                <MediaCardSkeleton skeletonCount={5} />
+              </div>
+            }
+          >
+            <SimilarShows results={similarMovies.results} />
+          </Suspense>
         </Container>
       </section>
     </>

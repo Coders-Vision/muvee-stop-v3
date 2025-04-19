@@ -8,7 +8,8 @@ import MovieDetails from "./components/movie-details";
 import MovieCast from "./components/movie-cast";
 import SimilarMovies from "./components/similar-movies";
 import { notFound } from "next/navigation";
-
+import { Suspense } from "react";
+import MediaCardSkeleton from "@/components/skeletons/media-card-skeleton";
 
 type MoviePage = {
   params: Promise<{
@@ -56,7 +57,7 @@ export async function generateMetadata(props: MoviePage): Promise<Metadata> {
 async function Movie(props: MoviePage) {
   const params = await props.params;
   const movieId = params.slug.split("-")[0];
-  
+
   const [movie, similarMovies] = await Promise.all([
     getMovieDetails(movieId),
     getSimilarMovies(+movieId),
@@ -85,7 +86,15 @@ async function Movie(props: MoviePage) {
 
       {/* Similar Movies Section */}
       <Container className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <SimilarMovies results={similarMovies.results} />
+        <Suspense
+          fallback={
+            <div className="flex items-center justify-center gap-x-4 ">
+              <MediaCardSkeleton skeletonCount={5} />
+            </div>
+          }
+        >
+          <SimilarMovies results={similarMovies.results} />
+        </Suspense>
       </Container>
     </main>
   );
