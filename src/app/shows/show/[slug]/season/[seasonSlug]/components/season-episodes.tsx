@@ -11,6 +11,8 @@ import { formatDate } from "@/lib/date-funcs";
 import { getBannerImageSmall } from "@/lib/get-image-path";
 import { generateSeasonsEpisodeCode } from "@/lib/misc-funcs";
 import { Episode } from "@/types/show/season";
+import Link from "next/link";
+
 
 function SeasonEpisodes({ episodes }: { episodes: Episode[] }) {
   return (
@@ -49,15 +51,24 @@ function SeasonEpisodes({ episodes }: { episodes: Episode[] }) {
                       className="object-cover w-full h-full"
                     />
                     {/* Play button overlay */}
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      {/* <button className="w-[60px] h-[60px] rounded-full flex items-center justify-center bg-white bg-opacity-35 hover:bg-opacity-75">
-                        <Lucide
-                          name="Play"
-                          size="40px"
-                          className="text-ms-green"
-                        />
-                      </button> */}
-                    </div>
+
+                    <Link
+                      href={{
+                        query: {
+                          episodeId: episode.id,
+                        },
+                      }}
+                    >
+                      <div className="absolute inset-0 flex items-center justify-center">
+                        <button className="w-[45px] h-[45px] rounded-full flex items-center justify-center bg-white bg-opacity-35 hover:bg-opacity-75">
+                          <Lucide
+                            name="Play"
+                            size="25px"
+                            className="text-ms-green"
+                          />
+                        </button>
+                      </div>
+                    </Link>
                   </div>
                   <div className="md:mx-4">
                     <div className="mb-2">

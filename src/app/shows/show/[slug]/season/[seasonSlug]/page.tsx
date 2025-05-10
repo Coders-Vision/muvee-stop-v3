@@ -15,6 +15,9 @@ type SeasonPage = {
     slug: string;
     seasonSlug: string;
   }>;
+  searchParams: Promise<{
+    episodeId: string;
+  }>;
 };
 
 //Next js SEO Tag Generation
@@ -63,8 +66,12 @@ export async function generateMetadata(props: SeasonPage): Promise<Metadata> {
 
 async function Season(props: SeasonPage) {
   const params = await props.params;
+  const searchParams = await props.searchParams;
   const showId = params.slug.split("-")[0];
   const season = params.seasonSlug.split("-")[0];
+  
+  // TODO: Get the episodeId from the URL and pass it to the component to play the video/trailer
+  const episodeId = searchParams.episodeId || null;
 
   const [showDetails, seasonDetails] = await Promise.all([
     getShowDetails(showId),
