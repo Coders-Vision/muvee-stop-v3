@@ -23,7 +23,7 @@ function PersonDetails({ person }: { person: Person }) {
 
   return (
     <div className="flex flex-col justify-center items-center lg:flex-row lg:justify-normal">
-      <div className="flex-shrink-0">
+      <div className="shrink-0">
         <ImageWithFallback
           src={getPosterImage(images.profiles[0]?.file_path)}
           alt={`${person.name}`}

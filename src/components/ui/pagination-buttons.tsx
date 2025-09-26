@@ -37,7 +37,7 @@ function PaginationButtons({
     <Link
       key={item}
       className={`${buttonVariants({
-        variant: "outline",
+        variant: "outline-solid",
         size: "sm",
         className: `rounded-xl ${
           currentPage === item ? "bg-ms-green hover:bg-ms-green" : ""
@@ -56,7 +56,7 @@ function PaginationButtons({
     <div className="flex gap-2">
       <Link
         className={buttonVariants({
-          variant: "outline",
+          variant: "outline-solid",
           size: "sm",
           className: "rounded-xl",
         })}
@@ -69,7 +69,7 @@ function PaginationButtons({
       </Link>
       <Link
         className={buttonVariants({
-          variant: "outline",
+          variant: "outline-solid",
           size: "sm",
           className: "rounded-xl",
         })}
@@ -83,7 +83,7 @@ function PaginationButtons({
       {renderPageLinks}
       <Link
         className={buttonVariants({
-          variant: "outline",
+          variant: "outline-solid",
           size: "sm",
           className: "rounded-xl",
         })}
@@ -99,7 +99,7 @@ function PaginationButtons({
       </Link>
       <Link
         className={buttonVariants({
-          variant: "outline",
+          variant: "outline-solid",
           size: "sm",
           className: "rounded-xl",
         })}

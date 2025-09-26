@@ -26,7 +26,7 @@ function ShowBanner({ show }: { show: Show }) {
             width="0"
             height="0"
             sizes="100vw"
-            className="w-full h-auto aspect-[16/9] md:aspect-[2.7/1] object-cover"
+            className="w-full h-auto aspect-video md:aspect-[2.7/1] object-cover"
           />
           {show.videos?.results[trailerIndex]?.key && (
             <EventButton
@@ -40,7 +40,7 @@ function ShowBanner({ show }: { show: Show }) {
           )}
         </>
       ) : (
-        <div className="w-full h-auto aspect-[16/9] md:aspect-[2.4/1] object-cover">
+        <div className="w-full h-auto aspect-video md:aspect-[2.4/1] object-cover">
           <VideoPlayer
             showPlayer={showPlayer}
             videoId={`${show.videos?.results[trailerIndex]?.key}`}

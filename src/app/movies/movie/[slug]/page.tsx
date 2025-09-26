@@ -60,7 +60,7 @@ async function Movie(props: MoviePage) {
 
   const [movie, similarMovies] = await Promise.all([
     getMovieDetails(movieId),
-    getSimilarMovies(+movieId),
+    getSimilarMovies(movieId),
   ]);
 
   // if (!movie) {

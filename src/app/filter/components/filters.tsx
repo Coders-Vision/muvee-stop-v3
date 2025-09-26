@@ -34,7 +34,7 @@ function Filters() {
   const [date, setDate] = useState<Date>();
   return (
     <div className="mb-4">
-      <Card className="px-4 mx-4 bg-gray-900 rounded-xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-80">
+      <Card className="px-4 mx-4 bg-gray-900 rounded-xl bg-clip-padding backdrop-filter backdrop-blur-xs bg-opacity-80">
         <div className="mt-2">
           <Label className="text-lg">Filter</Label>
         </div>
@@ -96,7 +96,7 @@ function Filters() {
             <Popover>
               <PopoverTrigger asChild className="mt-2">
                 <Button
-                  variant={"outline"}
+                  variant={"outline-solid"}
                   className={cn(
                     "w-[280px] justify-start text-left font-normal rounded-xl",
                     !date && "text-muted-foreground"
@@ -122,7 +122,7 @@ function Filters() {
             <Popover>
               <PopoverTrigger className="mt-2" asChild>
                 <Button
-                  variant={"outline"}
+                  variant={"outline-solid"}
                   className={cn(
                     "w-[280px] justify-start text-left font-normal rounded-xl",
                     !date && "text-muted-foreground"

@@ -39,7 +39,7 @@ export default async function Image({ params }: ShowPage) {
     return new ImageResponse(
       (
         // ImageResponse JSX element
-        <div tw="relative w-[100%] h-[100%] flex justify-center items-center">
+        <div tw="relative w-full h-full flex justify-center items-center">
           <img
             src={imagePath}
             alt={`${show.original_name}`}
