@@ -96,7 +96,7 @@ function Filters() {
             <Popover>
               <PopoverTrigger asChild className="mt-2">
                 <Button
-                  variant={"outline-solid"}
+                  variant={"outline"}
                   className={cn(
                     "w-[280px] justify-start text-left font-normal rounded-xl",
                     !date && "text-muted-foreground"
@@ -122,7 +122,7 @@ function Filters() {
             <Popover>
               <PopoverTrigger className="mt-2" asChild>
                 <Button
-                  variant={"outline-solid"}
+                  variant={"outline"}
                   className={cn(
                     "w-[280px] justify-start text-left font-normal rounded-xl",
                     !date && "text-muted-foreground"

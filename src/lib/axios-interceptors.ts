@@ -48,10 +48,10 @@ const onResponse = (response: AxiosResponse): AxiosResponse => {
 
 const onResponseError = async (error: AxiosError): Promise<AxiosError> => {
   if (!axios.isCancel(error)) {
-    const { config } = error;
-    const { url } = config;
+    const { config } =  error;;
+    const url = config?.url;
     //Deleting Url from Map on response error
-    abortControllersMap.delete(url);
+    if (url) abortControllersMap.delete(url);
     // console.log("Response Status Error, deleted URL from Map")
   }
   return Promise.reject(error);
