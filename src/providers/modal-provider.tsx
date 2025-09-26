@@ -88,7 +88,7 @@ function ModalProvider({ children }: Props) {
   };
 
   return (
-    <ModalContext.Provider value={{ showModal, hideModal: close }}>
+    (<ModalContext value={{ showModal, hideModal: close }}>
       {children}
       {/* // Your headless ui component for Modal goes here... */}
       {content && (
@@ -113,7 +113,7 @@ function ModalProvider({ children }: Props) {
           </DialogContent>
         </Dialog>
       )}
-    </ModalContext.Provider>
+    </ModalContext>)
   );
 }
 
