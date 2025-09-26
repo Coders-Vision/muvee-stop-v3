@@ -1,5 +1,5 @@
 "use client"; // Making sure, this is a Client Component
-import React, { useContext, useRef, useState, type JSX } from "react";
+import React, { use, useRef, useState, type JSX } from "react";
 import {
   Dialog,
   DialogContent,
@@ -118,6 +118,6 @@ function ModalProvider({ children }: Props) {
 }
 
 export const useModalContext = (): ModalContextProps =>
-  useContext(ModalContext);
+  use(ModalContext);
 
 export default ModalProvider;
