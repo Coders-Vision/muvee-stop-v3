@@ -33,7 +33,7 @@ function VideoPlayerModal({
             <div className=" flex items-center justify-between bg-black text-[#f9f9f9] p-3.5">
               <span className="font-semibold">Play Trailer</span>
               <div
-                className="cursor-pointer w-8 h-8 flex justify-center items-center rounded-lg opacity-50 hover:opacity-75 hover:bg-[#0f0f0f]"
+                className="cursor-pointer size-8 flex justify-center items-center rounded-lg opacity-50 hover:opacity-75 hover:bg-[#0f0f0f]"
                 onClick={() => setShowPlayer(false)}
               >
                 <X className="h-5" />
@@ -41,7 +41,7 @@ function VideoPlayerModal({
             </div>
             <div className="relative pt-[56.25%]">
               <ReactPlayer
-                url={`https://www.youtube.com/watch?v=${videoId}`}
+                src={`https://www.youtube.com/watch?v=${videoId}`}
                 width="100%"
                 height="100%"
                 style={{

@@ -14,7 +14,7 @@ import Link from "next/link";
 function MobileNav() {
   return (
     <nav className="relative z-50">
-      <div className="absolute h-screen min-w-full w-80 bg-gray-900 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-xs bg-opacity-60  ">
+      <div className="absolute h-screen min-w-full w-80 bg-gray-900/60 rounded-lg bg-clip-padding backdrop-filter backdrop-blur-xs ">
         <ScrollArea className="h-[calc(100vh-250px)] p-4">
           <Accordion type="single" collapsible className="w-full ">
             <AccordionItem value="a" className="">

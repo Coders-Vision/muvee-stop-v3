@@ -7,6 +7,7 @@ import ImageWithFallback from "@/components/image-with-fallback";
 import VideoPlayer from "@/components/video-player";
 import { getBannerImage } from "@/lib/get-image-path";
 import EventButton from "@/components/analytics/event-button";
+import { Lucide } from "@/components/ui/icons";
 // import VideoPlayerModal from "@/components/video-player-modal";
 
 function MovieBanner({ movie }: { movie: Movie }) {
@@ -38,7 +39,7 @@ function MovieBanner({ movie }: { movie: Movie }) {
               onClick={() => setShowPlayer(true)}
               className="absolute inset-0 flex items-center justify-center bg-transparent rounded-full hover:bg-transparent top-1/2 transform -translate-y-1/2"
             >
-              <PlayCircle size={50} color="#6ebf8a" />
+              <Lucide name="CirclePlay" className="size-12"  color="#6ebf8a" />
             </EventButton>
           )}
         </>

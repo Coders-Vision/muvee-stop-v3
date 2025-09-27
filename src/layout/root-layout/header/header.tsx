@@ -10,6 +10,7 @@ import { AlignJustify, Search as SearchIcon } from "lucide-react";
 import Link from "next/link";
 import Navbar from "../navbar/navbar";
 import MobileNav from "../navbar/mobile-nav";
+import { Lucide } from "@/components/ui/icons";
 // import { useModalContext } from "@/providers/modal-provider";
 
 function Header() {
@@ -34,7 +35,14 @@ function Header() {
           <div className="lg:hidden">
             <IconButton
               className="bg-none bg-transparent hover:bg-transparent"
-              icon={<AlignJustify size={24} color="#6ebf8a" />}
+              icon={
+                <Lucide
+                  name="TextAlignJustify"
+                  className="size-6"
+                  // size={24}
+                  color="#6ebf8a"
+                />
+              }
               onClick={() => setShowMobileNav((pre) => !pre)}
             />
           </div>
@@ -46,13 +54,19 @@ function Header() {
               width="100"
               height="50"
               sizes="100vw"
-    
             />
           </Link>
           <div className="md:hidden">
             <IconButton
               className="bg-transparent hover:bg-transparent"
-              icon={<SearchIcon className="text-white" />}
+              icon={
+                <Lucide
+                  name="Search"
+                  className="text-white size-6"
+                  size={24}
+                  // color="#6ebf8a"
+                />
+              }
               onClick={() => setShowSearch((pre) => !pre)}
             />
           </div>
