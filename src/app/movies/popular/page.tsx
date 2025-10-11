@@ -3,6 +3,7 @@ import Container from "@/layout/container";
 import { MovieFilterParams } from "@/types/filter/filter-params";
 import { Metadata } from "next";
 import MoviesPaginated from "@/components/movie-paginated";
+import { Filter } from "@/components/filter";
 // import MovieInfiniteScroll from "@/components/movie-infinite-scroll";
 
 type PopularMovie = {
@@ -17,13 +18,13 @@ export const metadata: Metadata = {
 async function Popular(props: PopularMovie) {
   const searchParams = await props.searchParams;
   const popularMovies = await discoverMovies({
-    page: searchParams.page,
-    sort_by: "popularity.desc",
+    ...searchParams,
   });
 
   return (
     <Container>
       <h1 className="font-semibold text-xl mt-4 mx-4">Popular Movies</h1>
+      <Filter type="movies" />
       <MoviesPaginated
         movies={popularMovies}
         paginatePath={"/movies/popular"}
