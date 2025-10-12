@@ -3,7 +3,8 @@ import Container from "@/layout/container";
 import { MovieFilterParams } from "@/types/filter/filter-params";
 import { Metadata } from "next";
 import MoviesPaginated from "@/components/movie-paginated";
-import { Filter } from "@/components/filter";
+import Filter from "@/components/filter";
+
 // import MovieInfiniteScroll from "@/components/movie-infinite-scroll";
 
 type PopularMovie = {

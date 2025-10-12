@@ -94,6 +94,9 @@ export const SORT_FILTER_OPTIONS = [
     value: "popularity.desc",
     label: "Popularity Descending",
   },
+
+  { value: "revenue.asc", label: "Revenue Ascending" },
+  { value: "revenue.desc", label: "Revenue Descending" },
   {
     value: "vote_average.asc",
     label: "Rating Ascending",

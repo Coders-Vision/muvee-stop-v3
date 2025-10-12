@@ -2,16 +2,20 @@
 
 import React from "react";
 import { format } from "date-fns";
-import { Calendar as CalendarIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button, ButtonProps } from "@/components/ui/button";
-import { Calendar, CalendarProps } from "@/components/ui/calendar";
+import {
+  Calendar,
+  CalendarProps,
+} from "@/components/ui/calendar";
 import {
   Popover,
   PopoverContent,
   PopoverTrigger,
 } from "@/components/ui/popover";
-import { Label } from "@radix-ui/react-label";
+import useFilter from "@/hooks/useFilter";
+import { Lucide } from "./icons";
+import { Label } from "./label";
 
 export interface DatePickerBaseProps {
   /** Calendar props */
@@ -33,7 +37,7 @@ export interface DatePickerBaseProps {
   disabled?: boolean;
 }
 
-export type DatePickerProps = DatePickerBaseProps & CalendarProps;
+export type DatePickerProps = DatePickerBaseProps & Omit<CalendarProps, 'mode' | 'selected' | 'onSelect'>;
 
 export function DatePicker({
   value,
@@ -45,7 +49,21 @@ export function DatePicker({
   disabled,
   ...calendarProps
 }: DatePickerProps) {
-  const [date, setDate] = React.useState<Date | undefined>(value);
+  const { value: date, setValue: setDate } = useFilter<Date | undefined>({
+    paramKey: "release_date.lte",
+    initialValue: value,
+     transform: {
+      toString: (value) => (value ? format(value, "yyyy-MM-dd") : ""),
+      fromString: (value) => (value ? new Date(value) : undefined),
+    },
+    onFilterChange: (date: Date | undefined) => onChange?.(date),
+  });
+  
+  React.useEffect(() => {
+    if (value !== date) {
+      setDate(value);
+    }
+  }, [value, date, setDate]);
 
   // Handle button click when disabled
   const handleButtonClick = (e: React.MouseEvent) => {
@@ -55,7 +73,7 @@ export function DatePicker({
   };
 
   return (
-    <div className="flex flex-col space-y-1.5">
+    <div className="flex flex-col ">
       <Label htmlFor="date-picker" className="mb-2 text-sm font-medium">
         {placeholder}
       </Label>
@@ -65,7 +83,7 @@ export function DatePicker({
             variant="outline"
             data-empty={!date}
             className={cn(
-              "data-[empty=true]:text-muted-foreground w-[280px] justify-start text-left font-normal",
+              "data-[empty=true]:text-muted-foreground w-full justify-start text-left font-normal",
               { "opacity-50 cursor-not-allowed": disabled },
               className
             )}
@@ -73,12 +91,18 @@ export function DatePicker({
             onClick={handleButtonClick}
             {...buttonProps}
           >
-            <CalendarIcon className="mr-2 h-4 w-4" />
+            <Lucide name="Calendar" size="20px" className="mr-2 h-4 w-4" />
             {date ? format(date, dateFormat) : <span>{placeholder}</span>}
           </Button>
         </PopoverTrigger>
         <PopoverContent className="w-auto p-0" align="start">
-          <Calendar captionLayout="dropdown" {...calendarProps} />
+          <Calendar
+            mode="single"
+            captionLayout="dropdown"
+            selected={date}
+            onSelect={(date) => setDate(date)}
+            {...calendarProps}
+          />
         </PopoverContent>
       </Popover>
     </div>

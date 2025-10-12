@@ -3,7 +3,7 @@ import Container from "@/layout/container";
 import { ShowFilterParams } from "@/types/filter/filter-params";
 import { Metadata } from "next";
 import ShowsPaginated from "@/components/show-paginated";
-import { Filter } from "@/components/filter";
+import Filter from "@/components/filter";
 
 type PopularShow = {
   searchParams: Promise<ShowFilterParams>;

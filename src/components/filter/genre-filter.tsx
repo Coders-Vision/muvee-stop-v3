@@ -72,14 +72,15 @@ function GenreFilter() {
   // };
 
   return (
-    <div className="space-y-2 mt-1">
+    <div className="mt-1">
       <Label className="mb-2 font-medium">Genre</Label>
       <Popover>
         <PopoverTrigger asChild>
           <Button
             variant="outline"
             size="lg"
-            className="h-10 rounded-xl border-dashed"
+
+            className="h-10 rounded-xl border-dashed w-full" 
           >
             <PlusCircle className="mr-2 h-4 w-4" />
             Choose Genre
