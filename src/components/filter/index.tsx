@@ -19,6 +19,7 @@ import {
 import { Button } from "../ui/button";
 import { Lucide } from "../ui/icons";
 import CountryFilter from "./country-filter";
+import { useRouter, usePathname } from "next/navigation";
 
 interface FilterProps {
   type?: "movies" | "tv";
@@ -29,7 +30,7 @@ function FilterContent({ type }: FilterProps) {
     <>
       <GenreFilter />
       <SortFilter />
-      <CountryFilter/>
+      <CountryFilter />
       {type === "movies" && <DatePicker />}
     </>
   );
@@ -37,10 +38,16 @@ function FilterContent({ type }: FilterProps) {
 
 function Filter({ type }: FilterProps) {
   const { width } = useDeviceInfo();
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleClearAll = () => {
+    router.push(pathname);
+  };
 
   if (width == undefined || width < 768) {
     return (
-      <div className="my-4 mx-4">
+      <div className="my-4 mx-4 inset-y-10">
         <Drawer>
           <DrawerTrigger asChild>
             <Button variant="outline" className="w-full">
@@ -57,7 +64,9 @@ function Filter({ type }: FilterProps) {
             </DrawerHeader>
             <DrawerFooter>
               <DrawerClose asChild>
-                <Button variant="outline">Clear</Button>
+                <Button variant="default" onClick={handleClearAll}>
+                  Clear
+                </Button>
               </DrawerClose>
             </DrawerFooter>
           </DrawerContent>
@@ -69,6 +78,13 @@ function Filter({ type }: FilterProps) {
   return (
     <Card className="flex flex-col md:flex-row justify-start gap-4 md:gap-6 p-4 md:p-6 my-4 mx-4 rounded-md">
       <FilterContent type={type} />
+      <Button
+        variant="default"
+        className="mt-6 w-full md:w-auto rounded-xl"
+        onClick={handleClearAll}
+      >
+        Clear
+      </Button>
     </Card>
   );
 }

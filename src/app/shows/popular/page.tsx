@@ -18,6 +18,7 @@ async function Popular(props: PopularShow) {
   const searchParams = await props.searchParams;
   const popularShows = await discoverShows({
     page: searchParams.page,
+    sort_by: "popularity.desc",
     ...searchParams,
   });
 
