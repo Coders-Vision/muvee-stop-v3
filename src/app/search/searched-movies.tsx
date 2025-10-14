@@ -58,7 +58,7 @@ function SearcheddMovies({
   return (
     <div className="mt-5 flex gap-x-4 flex-col w-full ">
       {/* <div className="mb-4 flex flex-col gap-4 ">
-        <Card className="w-auto space-y-2 p-2 mx-2 bg-gray-900 rounded-xl bg-clip-padding backdrop-filter backdrop-blur-sm bg-opacity-80">
+        <Card className="w-auto space-y-2 p-2 mx-2 bg-gray-900 rounded-xl bg-clip-padding backdrop-filter backdrop-blur-xs bg-opacity-80">
           <Input
             value={search}
             onChange={handleSearch}

@@ -11,7 +11,7 @@ import Overview from "@/components/overview";
 function MovieDetails({ movie }: { movie: Movie }) {
   return (
     <div className="relative sm:flex gap-6 mt-20 mx-4 select-none sm:max-w-md sm:mx-auto  lg:max-w-none">
-      <div className="relative bg-gradient-to-r from-gray-800 to-gray-600 lg:bg-none md:flex-shrink-0 ">
+      <div className="relative bg-linear-to-r from-gray-800 to-gray-600 lg:bg-none md:shrink-0 ">
         <ImageWithFallback
           src={getPosterImage(movie.poster_path)}
           alt={`${movie.title}`}
@@ -50,7 +50,7 @@ function MovieDetails({ movie }: { movie: Movie }) {
             <div>{movie.runtime} min</div>
           </div>
           <Overview overview={movie.overview} />
-          <dl className="grid grid-cols-[auto,1fr] gap-x-6 gap-y-4">
+          <dl className="grid grid-cols-[auto_1fr] gap-x-6 gap-y-4">
             <dt className="text-gray-300 font-light">Type</dt>
             <dd>Movie</dd>
 

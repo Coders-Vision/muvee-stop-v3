@@ -6,6 +6,7 @@ import ImageWithFallback from "@/components/image-with-fallback";
 import { PlayCircle } from "lucide-react";
 import { getBannerImage } from "@/lib/get-image-path";
 import EventButton from "@/components/analytics/event-button";
+import { Lucide } from "@/components/ui/icons";
 
 function ShowBanner({ show }: { show: Show }) {
   const [showPlayer, setShowPlayer] = useState<boolean>(false);
@@ -26,7 +27,7 @@ function ShowBanner({ show }: { show: Show }) {
             width="0"
             height="0"
             sizes="100vw"
-            className="w-full h-auto aspect-[16/9] md:aspect-[2.7/1] object-cover"
+            className="w-full h-auto aspect-video md:aspect-[2.7/1] object-cover"
           />
           {show.videos?.results[trailerIndex]?.key && (
             <EventButton
@@ -35,12 +36,12 @@ function ShowBanner({ show }: { show: Show }) {
               onClick={() => setShowPlayer(true)}
               className="absolute inset-0 flex items-center justify-center bg-transparent rounded-full hover:bg-transparent top-1/2 transform -translate-y-1/2"
             >
-              <PlayCircle size={50} color="#6ebf8a" />
+              <Lucide name="CirclePlay" className="size-12"  color="#6ebf8a" />
             </EventButton>
           )}
         </>
       ) : (
-        <div className="w-full h-auto aspect-[16/9] md:aspect-[2.4/1] object-cover">
+        <div className="w-full h-auto aspect-video md:aspect-[2.4/1] object-cover">
           <VideoPlayer
             showPlayer={showPlayer}
             videoId={`${show.videos?.results[trailerIndex]?.key}`}

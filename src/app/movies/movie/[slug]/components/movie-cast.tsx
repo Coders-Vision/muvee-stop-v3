@@ -16,7 +16,7 @@ function CastCard({ cast }: { cast: Cast }) {
       <CardContent className="p-0 ">
         <Link href={`/person/${createUrlSLug(cast.id + "", cast.name)}`}>
           <div className="flex">
-            <div className="rounded-xl flex-shrink-0 ">
+            <div className="rounded-xl shrink-0 ">
               <ImageWithFallback
                 src={getPosterImage(cast.profile_path!)}
                 alt={`${cast.name}`}

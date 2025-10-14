@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import { MovieFilterParams } from "@/types/filter/filter-params";
 import { discoverMovies } from "@/actions/movies/discover-movies";
 import { getDate, getDifference } from "@/lib/date-funcs";
+import Filter from "@/components/filter";
 
 type NowPlayingMovie = {
   searchParams: Promise<MovieFilterParams>;
@@ -25,11 +26,13 @@ async function NowPlaying(props: NowPlayingMovie) {
     with_release_type: "2|3",
     "release_date.gte": twoWeekDiff,
     "release_date.lte": getTodaysDate,
+    ...searchParams,
   });
 
   return (
     <Container>
       <h1 className="font-semibold text-xl mt-4 mx-4">Now Playing Movies</h1>
+      <Filter type="movies" />
       <MoviesPaginated
         movies={nowPlayingMovies}
         paginatePath={"/movies/now-playing"}

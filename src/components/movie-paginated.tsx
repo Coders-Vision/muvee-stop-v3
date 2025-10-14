@@ -24,11 +24,10 @@ function MoviesPaginated({
 
   return (
     <div className="mt-5 flex flex-col  ">
-      <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
+      <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6">
         {movies?.results.length === 0 && (
           <div className="mx-auto">No Movies Found</div>
         )}
-
         {movies?.results?.map((movie) => (
           <MovieCard key={movie.id} movie={movie} showDescription={true} />
         ))}

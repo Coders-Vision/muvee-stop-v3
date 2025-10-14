@@ -4,6 +4,7 @@ import { ShowFilterParams } from "@/types/filter/filter-params";
 import { Metadata } from "next";
 import ShowsPaginated from "@/components/show-paginated";
 import { getDate, addDate } from "@/lib/date-funcs";
+import Filter from "@/components/filter";
 
 type OnTVShow = {
   searchParams: Promise<ShowFilterParams>;
@@ -24,11 +25,13 @@ async function OnTV(props: OnTVShow) {
     sort_by: "popularity.desc",
     "air_date.gte": getTodaysDate,
     "air_date.lte": addOneWeek,
+    ...searchParams,
   });
 
   return (
     <Container>
       <h1 className="font-semibold text-xl mt-4 mx-4">Shows On TV</h1>
+      <Filter type="tv" />
       <ShowsPaginated shows={onTvToday} paginatePath={"/shows/on-tv"} />
     </Container>
   );

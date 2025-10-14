@@ -19,7 +19,7 @@ function VideoPlayer({
     <>
       {hasWindow && (
         <ReactPlayer
-          url={`https://www.youtube.com/watch?v=${videoId}`}
+          src={`https://www.youtube.com/watch?v=${videoId}`}
           width="100%"
           height="100%"
           controls={true}

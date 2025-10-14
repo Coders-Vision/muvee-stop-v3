@@ -133,7 +133,7 @@ function ShowSeasons({ show, showUrl }: { show: Show; showUrl: string }) {
                     width="0"
                     height="0"
                     sizes="50vw"
-                    className="w-[125px] rounded-xl flex-shrink-0"
+                    className="w-[125px] rounded-xl shrink-0"
                   />
 
                   <p className="my-2 font-light w-auto ">

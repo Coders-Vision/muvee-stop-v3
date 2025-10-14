@@ -3,7 +3,8 @@ import Container from "@/layout/container";
 import { Metadata } from "next";
 import { MovieFilterParams } from "@/types/filter/filter-params";
 import { discoverMovies } from "@/actions/movies/discover-movies";
-import { addDate, getDate,  } from "@/lib/date-funcs";
+import { addDate, getDate } from "@/lib/date-funcs";
+import Filter from "@/components/filter";
 
 type UpcomingMovie = {
   searchParams: Promise<MovieFilterParams>;
@@ -25,11 +26,13 @@ async function UpcomingMovies(props: UpcomingMovie) {
     with_release_type: "2|3",
     "release_date.gte": twoMonthsAdd,
     "release_date.lte": fouraMonthsAdd,
+    ...searchParams,
   });
 
   return (
     <Container>
       <h1 className="font-semibold text-xl mt-4 mx-4">Upcoming Movies</h1>
+      <Filter type="movies" />
       <MoviesPaginated
         movies={nowPlayingMovies}
         paginatePath={"/movies/upcoming"}

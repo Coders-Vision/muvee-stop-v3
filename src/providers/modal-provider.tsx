@@ -1,5 +1,5 @@
 "use client"; // Making sure, this is a Client Component
-import React, { useContext, useRef, useState, type JSX } from "react";
+import React, { use, useRef, useState, type JSX } from "react";
 import {
   Dialog,
   DialogContent,
@@ -88,7 +88,7 @@ function ModalProvider({ children }: Props) {
   };
 
   return (
-    <ModalContext.Provider value={{ showModal, hideModal: close }}>
+    (<ModalContext value={{ showModal, hideModal: close }}>
       {children}
       {/* // Your headless ui component for Modal goes here... */}
       {content && (
@@ -113,11 +113,11 @@ function ModalProvider({ children }: Props) {
           </DialogContent>
         </Dialog>
       )}
-    </ModalContext.Provider>
+    </ModalContext>)
   );
 }
 
 export const useModalContext = (): ModalContextProps =>
-  useContext(ModalContext);
+  use(ModalContext);
 
 export default ModalProvider;

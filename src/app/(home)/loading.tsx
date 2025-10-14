@@ -6,7 +6,7 @@ function HomePageLOader() {
   return (
     <Container>
       <section>
-        <Skeleton className=" my-8  w-full h-auto rounded-2xl aspect-[16/9] md:aspect-[2.4/1] " />
+        <Skeleton className=" my-8  w-full h-auto rounded-2xl aspect-video md:aspect-[2.4/1] " />
       </section>
       <section className="grid grid-flow-col auto-cols-[325px] gap-6 my-4 overflow-x-scroll md:grid-flow-row md:grid-cols-4 no-scrollbar">
         <Skeleton className="rounded-2xl w-[325px] h-[170px]" />

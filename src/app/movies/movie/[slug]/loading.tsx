@@ -6,13 +6,13 @@ function MovieLoading() {
   return (
     <>
       <section>
-        <Skeleton className="w-full h-auto aspect-[16/9] md:aspect-[2.7/1] object-cover" />
+        <Skeleton className="w-full h-auto aspect-video md:aspect-[2.7/1] object-cover" />
       </section>
       <section>
         <Container>
           <div className="flex flex-col lg:flex-row justify-center items-center">
             <div className="sm:flex gap-6 mt-20 mx-4  sm:max-w-md sm:mx-auto  lg:max-w-none">
-              <div className=" md:flex-shrink-0 ">
+              <div className=" md:shrink-0 ">
                 <Skeleton className="h-[400px] w-[300px] rounded-xl my-4" />
               </div>
               <div className="hidden lg:block mx-2">

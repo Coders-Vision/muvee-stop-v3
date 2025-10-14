@@ -18,11 +18,11 @@ function SeasonBanner({ season, show }: { season: Season; show: Show }) {
         width="0"
         height="0"
         sizes="100vw"
-        className="w-full h-auto aspect-[16/9] md:aspect-[2.7/1] object-cover"
+        className="w-full h-auto aspect-video md:aspect-[2.7/1] object-cover"
       />
 
       {/* Dark overlay with gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-black via-transparent to-transparent opacity-90"></div>
+      <div className="absolute inset-0 bg-linear-to-r from-black via-transparent to-transparent opacity-90"></div>
 
       {/* Play button overlay */}
       <div className="absolute inset-0 flex items-center justify-center z-40">

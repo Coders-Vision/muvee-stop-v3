@@ -122,7 +122,7 @@ function Suggestions({
   };
 
   return (
-    <div className="w-full bg-gray-900 backdrop-filter backdrop-blur-sm bg-opacity-60 rounded-2xl absolute mt-1 flex flex-col divide-y-2 divide-slate-400/[.045] transition-all duration-75 ease-in-out z-40 ">
+    <div className="w-full bg-gray-900/60 backdrop-filter backdrop-blur-xs rounded-2xl absolute mt-1 flex flex-col divide-y-2 divide-slate-400/4.5 transition-all duration-75 ease-in-out z-40 ">
       {searchResult?.map((result, index) => (
         <MovieShow result={result} key={index} />
       ))}

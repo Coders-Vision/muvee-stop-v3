@@ -31,7 +31,7 @@ function Slide({ result }: { result: MovieResult }) {
         width="0"
         height="0"
         sizes="100vw"
-        className="w-full h-auto rounded-2xl aspect-[16/9] md:aspect-[2.4/1] object-cover"
+        className="w-full h-auto rounded-2xl aspect-video md:aspect-[2.4/1] object-cover"
       />
       <div className="absolute bottom-0 z-50 mx-4 my-2">
         <h1 className="font-bold text-sm md:text-2xl lg:text-3xl leading-5">
