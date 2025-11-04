@@ -2,7 +2,7 @@
 import React, { KeyboardEvent, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { SearchType, SearchResult } from "@/types/search/search";
+import { Result, SearchResult } from "@/types/search/search";
 import { Star } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { createUrlSLug } from "@/lib/slugify";
@@ -19,7 +19,7 @@ function Suggestions({
   onSuggestionHide,
 }: {
   search: string;
-  searchResult: SearchResult[];
+  searchResult: Result[];
   onSuggestionHide: () => void;
 }) {
   const router = useRouter();
@@ -40,7 +40,7 @@ function Suggestions({
     );
   };
 
-  const ResultDetails = ({ result }: { result: SearchResult }) => {
+  const ResultDetails = ({ result }: { result: Result }) => {
     const resultType =
       result?.media_type === "movie"
         ? "Movie"
@@ -73,7 +73,7 @@ function Suggestions({
     );
   };
 
-  const goToPage = (result: SearchResult) => {
+  const goToPage = (result: Result) => {
     onSuggestionHide && onSuggestionHide();
     if (result?.media_type === "movie") {
       router.push(
@@ -88,7 +88,7 @@ function Suggestions({
     }
   };
 
-  const MovieShow = ({ result }: { result: SearchResult }) => {
+  const MovieShow = ({ result }: { result: Result }) => {
     const image =
       result.media_type !== "person"
         ? getPosterImage(result?.poster_path!)
@@ -137,11 +137,11 @@ function Search() {
   const router = useRouter();
   // const [searchResult, setSearchResult] = useState<SearchResult[]>([]);
 
-  const { data, error, isLoading } = useGet<SearchType>({
+  const { data, error, isLoading } = useGet<SearchResult>({
     fetchRecord: getSearch,
     IsFetch: search.length > 0 ? true : false,
     recordName: "search",
-    recordQuery: { query: debouncedValue },
+    recordQuery: { searchQuery: debouncedValue },
   });
 
   const searchList = Array.isArray(data?.results)

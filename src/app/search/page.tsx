@@ -1,13 +1,7 @@
 import Container from "@/layout/container";
-import SearcheddMovies from "./searched-movies";
+import SearchedResult from "./components/searched-result";
 import { SearchParams } from "@/types/search/search-params";
-import {
-  HydrationBoundary,
-  QueryClient,
-  dehydrate,
-} from "@tanstack/react-query";
 import { getSearch } from "@/actions/search";
-import { SearchType } from "@/types/search/search";
 import { Metadata } from "next";
 
 type SearchPage = {
@@ -36,27 +30,23 @@ export async function generateMetadata(props: SearchPage): Promise<Metadata> {
 
 async function Search(props: SearchPage) {
   const searchParams = await props.searchParams;
-  const queryClient = new QueryClient();
-  await queryClient.prefetchQuery<SearchType>({
-    queryKey: [
-      "searchPage",
-      { query: searchParams.searchQuery, page: searchParams.page },
-    ],
-    queryFn: () =>
-      getSearch({ query: searchParams.searchQuery, page: searchParams.page }),
+  const searchQuery = searchParams.searchQuery;
+  
+  const searchedResult = await getSearch({
+    searchQuery,
+    page: searchParams.page,
+    // ...searchParams,
   });
 
   return (
     <Container>
-      <HydrationBoundary state={dehydrate(queryClient)}>
-        <h1 className="font-semibold text-xl mx-4">
-          Search for {searchParams.searchQuery}
-        </h1>
-        <SearcheddMovies
-          page={searchParams.page}
-          searchQuery={searchParams.searchQuery}
-        />
-      </HydrationBoundary>
+      <h1 className="font-semibold text-xl mx-4">
+        Search for {searchParams.searchQuery}
+      </h1>
+      <SearchedResult
+        page={searchParams.page}
+        data={searchedResult}
+      />
     </Container>
   );
 }

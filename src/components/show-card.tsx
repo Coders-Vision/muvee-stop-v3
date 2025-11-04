@@ -15,9 +15,11 @@ import { StarIcon } from "lucide-react";
 function ShowCard({
   show,
   showDescription,
+  showLabel = false,
 }: {
   show: ShowResult;
   showDescription: boolean;
+  showLabel?: boolean;
 }) {
   const [open, setOpen] = useState(false);
 
@@ -40,8 +42,20 @@ function ShowCard({
       >
         <div className="flex flex-col justify-center items-center my-2">
           <Card className="w-[125px] md:w-[150px] lg:w-[175px] rounded-xl shadow-xl cursor-pointer border-[3px] border-[#f9f9f9] border-opacity-10 hover:border-opacity-80 hover:shadow-2xl transform hover:scale-105 transition duration-300">
-            <CardContent className="p-0">
-              <Link href={`/shows/show/${createUrlSLug(show.id + "", show.name)}`}>
+            <CardContent className="relative p-0">
+              <Link
+                href={`/shows/show/${createUrlSLug(show.id + "", show.name)}`}
+              >
+                {showLabel && (
+                  <div className="absolute right-2 top-2">
+                    <span
+                      className="inline-flex items-center px-2 py-1 rounded-full text-[0.65rem] font-semibold bg-black bg-opacity-60 text-white backdrop-blur"
+                      aria-label="Media type"
+                    >
+                      Show
+                    </span>
+                  </div>
+                )}
                 <ImageWithFallback
                   src={getPosterImage(show.poster_path)}
                   alt={`${show.name}`}
@@ -72,7 +86,7 @@ function ShowCard({
                 {show.vote_average?.toFixed(1)}
               </div>
             </div>
-            <div>{show.first_air_date?.substring(0,4)}</div>
+            <div>{show.first_air_date?.substring(0, 4)}</div>
           </div>
           <p className="my-2 text-[0.75rem]">
             {show.overview.substring(0, 125)}

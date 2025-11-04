@@ -9,7 +9,7 @@ import TrendingSlides from "./components/trending-slides";
 import { getShowProviders } from "@/actions/shows/show-providers";
 import { TMDB_WATCH_REGION } from "@/constants/tmdb-contants";
 import { getMovieProviders } from "@/actions/movies/movie-providers";
-import StudioSlider from "@/components/studio-slider";
+import NetworkSlider from "@/components/network-slider";
 
 import {
   getNowPlaying,
@@ -65,12 +65,12 @@ export default async function Home() {
             </div>
             <TabsContent value="movies" className="mt-2 border-0 p-0">
               <Trending trending={trending} />
-              <StudioSlider providers={moviesProviders} type="movies" />
+              <NetworkSlider providers={moviesProviders} type="movies" />
               <Popular popular={popular} />
             </TabsContent>
             <TabsContent value="shows" className="mt-2 border-0 p-0">
               <TopRated topRated={topRatedTv} />
-              <StudioSlider providers={showProviders} type="shows" />
+              <NetworkSlider providers={showProviders} type="shows" />
               <PopularShows popularShows={popularShows} />
             </TabsContent>
           </Tabs>

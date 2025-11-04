@@ -1,11 +1,11 @@
-export interface SearchType {
+export interface SearchResult {
   page: number;
-  results: SearchResult[];
+  results: Result[];
   total_pages: number;
   total_results: number;
 }
 
-export interface SearchResult {
+export interface Result {
   adult: boolean;
   backdrop_path: null | string;
   id: number;

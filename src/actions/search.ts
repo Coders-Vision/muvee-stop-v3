@@ -1,18 +1,16 @@
 "use server";
 
-import { axiosInstance } from "@/lib/axios-server";
+// import { axiosInstance } from "@/lib/axios-server";
 import { fetchInstance } from "@/lib/fetch-instance";
-import { SearchType } from "@/types/search/search";
+import { SearchResult } from "@/types/search/search";
+import { SearchParams } from "@/types/search/search-params";
 
 export async function getSearch({
-  query,
+  searchQuery,
   page = 1,
-}: {
-  query: string;
-  page?: number;
-}) {
+}: SearchParams): Promise<SearchResult> {
   const response = await fetchInstance(`search/multi`, {
-    params: { query, page },
+    params: { query: searchQuery, page },
   });
   return response.json();
 }

@@ -29,7 +29,7 @@ function Header() {
   }, [pathname]);
 
   return (
-    <header className="sticky top-0 bg-background z-50 py-0.5">
+    <header className="fixed top-0 w-full bg-background z-50 py-0.5">
       <Container>
         <div className="flex my-2 justify-between items-center gap-4 mx-2 ">
           <div className="lg:hidden">

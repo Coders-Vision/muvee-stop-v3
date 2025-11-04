@@ -65,7 +65,7 @@ export default function RootLayout({
         /> */}
         <Providers>
           <Header />
-          <main className="">
+          <main className="pt-20">
             {/* <Navbar /> */}
             {children}
           </main>

@@ -7,6 +7,8 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import ShareButton from "@/components/share-button";
 import Overview from "@/components/overview";
+import Link from "next/link";
+import { createUrlSLug } from "@/lib/slugify";
 
 function MovieDetails({ movie }: { movie: Movie }) {
   return (
@@ -46,7 +48,7 @@ function MovieDetails({ movie }: { movie: Movie }) {
                 {movie.vote_average?.toFixed(1)}
               </div>
             </div>
-            <div>{movie.release_date?.substring(0,4)}</div>
+            <div>{movie.release_date?.substring(0, 4)}</div>
             <div>{movie.runtime} min</div>
           </div>
           <Overview overview={movie.overview} />
@@ -82,8 +84,16 @@ function MovieDetails({ movie }: { movie: Movie }) {
             <dt className="text-gray-300 font-light">Production</dt>
             <dd>
               {movie.production_companies.map((company, index) => (
-                <span key={company.name}>
-                  {company.name}
+                <span className="hover:underline" key={company.name}>
+                  <Link
+                    key={company.id}
+                    href={`/movies/studio/${createUrlSLug(
+                      company.id + "",
+                      company.name
+                    )}`}
+                  >
+                    {company.name}
+                  </Link>
                   {index < movie.production_companies.length - 1 ? " • " : ""}
                 </span>
               ))}

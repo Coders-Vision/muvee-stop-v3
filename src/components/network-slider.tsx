@@ -15,7 +15,7 @@ import { createUrlSLug } from "@/lib/slugify";
 
 type Slider = ShowProvidersType | MovieProvidersType;
 
-function StudioSlider({
+function NetworkSlider({
   providers,
   type
 }: {
@@ -24,7 +24,7 @@ function StudioSlider({
 }) {
   return (
     <div className="mx-2">
-      <h4 className="text-xl">Studios</h4>
+      <h4 className="text-xl">Networks</h4>
       <Swiper
         loop={true}
         autoplay={{
@@ -50,7 +50,7 @@ function StudioSlider({
             <div className="flex flex-col justify-center items-center my-4">
               <div className="rounded-xl cursor-pointer select-none w-[100px] md:w-[100px]">
                 <Link
-                  href={`/${type}/studio/${createUrlSLug(
+                  href={`/${type}/network/${createUrlSLug(
                     result.provider_id + "",
                     result.provider_name
                   )}`}
@@ -77,4 +77,4 @@ function StudioSlider({
   );
 }
 
-export default StudioSlider;
+export default NetworkSlider;

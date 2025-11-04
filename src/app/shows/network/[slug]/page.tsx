@@ -6,38 +6,39 @@ import Container from "@/layout/container";
 import { ShowFilterParams } from "@/types/filter/filter-params";
 import { Metadata } from "next";
 
-type StudioShows = {
+type NetworkShows = {
   params: Promise<{
     slug: string;
   }>;
   searchParams: Promise<ShowFilterParams>;
 };
 export const metadata: Metadata = {
-  title: "Studio Shows",
+  title: "Network Shows",
 };
 
-async function StudioShows(props: StudioShows) {
+async function NetworkShows(props: NetworkShows) {
   const searchParams = await props.searchParams;
   const params = await props.params;
-  const studioId = params.slug.split("-")[0];
-  const studioName = params.slug.split("-").slice(1).join(" ")|| "Studio";
+  const providerId = params.slug.split("-")[0];
+  const providerName =
+    params.slug.split("-").slice(1).join(" ") || "Network";
 
   const studioShows = await discoverShows({
     page: searchParams.page,
-    with_companies: studioId,
+    with_watch_providers: providerId,
+    watch_region: TMDB_WATCH_REGION,
     ...searchParams,
   });
-
   return (
     <Container>
-      <h1 className="font-semibold text-xl mt-4 mx-4">{studioName} Shows</h1>
+      <h1 className="font-semibold text-xl mt-4 mx-4">{providerName} Shows</h1>
       <Filter type="movies" />
       <ShowsPaginated
         shows={studioShows}
-        paginatePath={`/shows/studio/${params.slug}`}
+        paginatePath={`/shows/network/${params.slug}`}
       />
     </Container>
   );
 }
 
-export default StudioShows;
+export default NetworkShows;

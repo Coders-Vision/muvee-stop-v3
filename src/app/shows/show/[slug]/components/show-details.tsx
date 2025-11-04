@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/badge";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import ShareButton from "@/components/share-button";
 import Overview from "@/components/overview";
+import { createUrlSLug } from "@/lib/slugify";
+import Link from "next/link";
 
 function ShowDetails({ show }: { show: Show }) {
   const {
@@ -59,7 +61,7 @@ function ShowDetails({ show }: { show: Show }) {
                 {vote_average?.toFixed(1)}
               </div>
             </div>
-            <div>{first_air_date?.substring(0,4)}</div>
+            <div>{first_air_date?.substring(0, 4)}</div>
             <div>{number_of_seasons} Seasons</div>
           </div>
           <Overview overview={show.overview} />
@@ -94,9 +96,17 @@ function ShowDetails({ show }: { show: Show }) {
             <dt className="text-gray-300 font-light">Production</dt>
             <dd>
               {production_companies.map((company, index) => (
-                <span key={company.name}>
-                  {company.name}
-                  {index <production_companies.length - 1 ? " • " : ""}
+                <span className="hover:underline" key={company.name}>
+                  <Link
+                    key={company.id}
+                    href={`/shows/studio/${createUrlSLug(
+                      company.id + "",
+                      company.name
+                    )}`}
+                  >
+                    {company.name}
+                  </Link>
+                  {index < show.production_companies.length - 1 ? " • " : ""}
                 </span>
               ))}
             </dd>
