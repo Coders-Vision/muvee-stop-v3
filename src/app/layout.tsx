@@ -22,14 +22,14 @@ const inter = Inter({ subsets: ["latin"] });
 // };
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.DEPOLY_URL || "/"),
+  // metadataBase: new URL(process.env.DEPOLY_URL || "/"),
   title: {
     default: data.title,
     template: `%s | ${data.title}`,
   },
   description: data.description,
   openGraph: {
-    images: `${process.env.DEPOLY_URL}/images/og-image.png`,
+    // images: `${process.env.DEPOLY_URL}/images/og-image.png`,
   },
 };
 
