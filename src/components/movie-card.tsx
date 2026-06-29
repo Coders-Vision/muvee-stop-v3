@@ -1,4 +1,4 @@
-"use clent";
+"use client";
 
 import React, { useState } from "react";
 import { Card, CardContent } from "./ui/card";
@@ -91,7 +91,7 @@ function MovieCard({
             <div>{movie.release_date?.substring(0, 4)}</div>
           </div>
           <p className="my-2 text-[0.75rem]">
-            {movie.overview.substring(0, 125)}
+            {movie.overview?.substring(0, 125)}
           </p>
         </div>
       </PopoverContent>

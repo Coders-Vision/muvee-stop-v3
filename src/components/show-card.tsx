@@ -1,4 +1,4 @@
-"use clent";
+"use client";
 
 import React, { useState } from "react";
 import { Card, CardContent } from "./ui/card";
@@ -89,7 +89,7 @@ function ShowCard({
             <div>{show.first_air_date?.substring(0, 4)}</div>
           </div>
           <p className="my-2 text-[0.75rem]">
-            {show.overview.substring(0, 125)}
+            {show.overview?.substring(0, 125)}
           </p>
         </div>
       </PopoverContent>

@@ -9,7 +9,7 @@ export async function GET(
     const url = new URL(req.url);
     const query = url.searchParams.get("query");
     if (!query) {
-      NextResponse.json(
+      return NextResponse.json(
         { status: "error", message: "Query is empty!" },
         { status: 400 }
       );
