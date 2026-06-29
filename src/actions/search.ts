@@ -10,6 +10,7 @@ export async function getSearch({
   page = 1,
 }: SearchParams): Promise<SearchResult> {
   const response = await fetchInstance(`search/multi`, {
+    options: { next: { revalidate: 300 } },
     params: { query: searchQuery, page },
   });
   return response.json();

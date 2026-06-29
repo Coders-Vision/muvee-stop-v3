@@ -61,11 +61,9 @@ function MovieCard({
                   src={getPosterImage(movie.poster_path)}
                   alt={`${movie.title}`}
                   placeholder="empty"
-                  loading="eager"
                   width={175} // Set a fixed width
                   height={260} // Set a fixed height based on the image aspect ratio
-                  sizes="100vw"
-                  // sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1200px) 20vw, 175px"
                   className="object-contain w-full h-auto rounded-xl"
                 />
               </Link>

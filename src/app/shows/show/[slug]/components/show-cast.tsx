@@ -22,10 +22,9 @@ function CastCard({ cast }: { cast: Cast }) {
                 src={getPosterImage(cast.profile_path!)}
                 alt={`${cast.name}`}
                 placeholder="empty"
-                loading="eager"
                 width="0"
                 height="0"
-                sizes="100vw"
+                sizes="50px"
                 className="w-[50px] rounded-xl"
               />
             </div>

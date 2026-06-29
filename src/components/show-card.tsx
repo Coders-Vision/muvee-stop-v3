@@ -60,10 +60,9 @@ function ShowCard({
                   src={getPosterImage(show.poster_path)}
                   alt={`${show.name}`}
                   placeholder="empty"
-                  loading="eager"
                   width={175} // Set a fixed width
                   height={260} // Set a fixed height based on the image aspect ratio
-                  sizes="100vw"
+                  sizes="(max-width: 768px) 50vw, (max-width: 1200px) 20vw, 175px"
                   className="object-contain w-full h-auto rounded-xl"
                 />
               </Link>

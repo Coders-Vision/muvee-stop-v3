@@ -59,9 +59,9 @@ function NetworkSlider({
                     src={getOriginalImage(result.logo_path)}
                     alt={`${result.provider_name}`}
                     placeholder="empty"
-                    loading="eager"
                     width={125}
                     height={125}
+                    sizes="125px"
                     className=" w-full h-auto rounded-xl"
                   />
                 </Link>
