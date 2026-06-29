@@ -5,12 +5,27 @@ import { getPersonDetails } from "@/actions/movies/get-person-details";
 import { notFound } from "next/navigation";
 import Filmography from "./components/filmography";
 import { createUrlSLug } from "@/lib/slugify";
+import { fetchInstance } from "@/lib/fetch-instance";
 
 type PersonPage = {
   params: Promise<{
     slug: string;
   }>;
 };
+
+// Pre-render the most popular people at build time; the rest render on
+// demand and are cached (ISR) via the revalidate window below.
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const res = await fetchInstance("person/popular");
+  const data = (await res.json()) as {
+    results: { id: number; name: string }[];
+  };
+  return data.results.slice(0, 20).map((person) => ({
+    slug: createUrlSLug(person.id + "", person.name),
+  }));
+}
 
 //Next js SEO Tag Generation
 export async function generateMetadata(props: PersonPage): Promise<Metadata> {

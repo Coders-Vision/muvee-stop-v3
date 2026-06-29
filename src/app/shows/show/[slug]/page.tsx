@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { createUrlSLug } from "@/lib/slugify";
 import { getShowDetails } from "@/actions/shows/get-show-details";
 import { getSimilarShows } from "@/actions/shows/get-similar-shows";
+import { getPopularShows } from "@/actions/home-actions";
 import Container from "@/layout/container";
 import ShowBanner from "./components/show-banner";
 import ShowDetails from "./components/show-details";
@@ -18,6 +19,22 @@ type ShowPage = {
     slug: string;
   }>;
 };
+
+// Pre-render the most popular shows at build time; the rest render on
+// demand and are cached (ISR) via the revalidate window above.
+export async function generateStaticParams() {
+  const popular = await getPopularShows();
+  return popular.results.slice(0, 20).map((show) => ({
+    slug: createUrlSLug(show.id + "", show.name),
+  }));
+}
+
+// Fetched inside its own Suspense boundary so the banner/details paint
+// without waiting on the similar-shows request.
+async function SimilarShowsSection({ showId }: { showId: number }) {
+  const similarShows = await getSimilarShows(showId);
+  return <SimilarShows results={similarShows.results} />;
+}
 
 //Next js SEO Tag Generation
 export async function generateMetadata(props: ShowPage): Promise<Metadata> {
@@ -62,10 +79,7 @@ async function Show(props: ShowPage) {
   const params = await props.params;
   const showId = params.slug.split("-")[0];
 
-  const [show, similarMovies] = await Promise.all([
-    getShowDetails(showId),
-    getSimilarShows(+showId),
-  ]);
+  const show = await getShowDetails(showId);
 
   return (
     <>
@@ -94,7 +108,7 @@ async function Show(props: ShowPage) {
               </div>
             }
           >
-            <SimilarShows results={similarMovies.results} />
+            <SimilarShowsSection showId={+showId} />
           </Suspense>
         </Container>
       </section>

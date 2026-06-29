@@ -1,6 +1,7 @@
 import Container from "@/layout/container";
 import { getMovieDetails } from "@/actions/movies/get-movie-details";
 import { getSimilarMovies } from "@/actions/movies/get-similar-movies";
+import { getPopularMovies } from "@/actions/home-actions";
 import { Metadata } from "next";
 import { createUrlSLug } from "@/lib/slugify";
 import MovieBanner from "./components/movie-banner";
@@ -16,6 +17,24 @@ type MoviePage = {
     slug: string;
   }>;
 };
+
+// Pre-render the most popular movies at build time; the rest render
+// on demand and are cached (ISR) via the revalidate window below.
+export const revalidate = 3600;
+
+export async function generateStaticParams() {
+  const popular = await getPopularMovies();
+  return popular.results.slice(0, 20).map((movie) => ({
+    slug: createUrlSLug(movie.id + "", movie.title ?? movie.original_title),
+  }));
+}
+
+// Fetched inside its own Suspense boundary so the banner/details paint
+// without waiting on the similar-movies request.
+async function SimilarMoviesSection({ movieId }: { movieId: string }) {
+  const similarMovies = await getSimilarMovies(movieId);
+  return <SimilarMovies results={similarMovies.results} />;
+}
 
 //Next js SEO Tag Generation
 export async function generateMetadata(props: MoviePage): Promise<Metadata> {
@@ -58,10 +77,7 @@ async function Movie(props: MoviePage) {
   const params = await props.params;
   const movieId = params.slug.split("-")[0];
 
-  const [movie, similarMovies] = await Promise.all([
-    getMovieDetails(movieId),
-    getSimilarMovies(movieId),
-  ]);
+  const movie = await getMovieDetails(movieId);
 
   // if (!movie) {
   //   notFound();
@@ -93,7 +109,7 @@ async function Movie(props: MoviePage) {
             </div>
           }
         >
-          <SimilarMovies results={similarMovies.results} />
+          <SimilarMoviesSection movieId={movieId} />
         </Suspense>
       </Container>
     </main>
