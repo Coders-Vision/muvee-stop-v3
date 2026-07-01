@@ -49,7 +49,6 @@ export default async function Home() {
           <TrendingSlides trending={trending} />
         </Container>
       </section>
-
       <section>
         <Container>
           <Tabs defaultValue="movies" className="">
